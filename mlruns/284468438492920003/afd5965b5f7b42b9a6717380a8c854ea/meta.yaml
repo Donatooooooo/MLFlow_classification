@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/afd5965b5f7b42b9a6717380a8c854ea/artifacts
+deleted_time: 1726591266101
+end_time: 1726590748346
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: deleted
+run_id: afd5965b5f7b42b9a6717380a8c854ea
+run_name: welcoming-hog-596
+run_uuid: afd5965b5f7b42b9a6717380a8c854ea
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726590737636
+status: 3
+tags: []
+user_id: donat

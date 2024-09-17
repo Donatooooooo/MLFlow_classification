@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/378519257392658623/fdfd6f88db9f4ceb933d67ca1f61210a/artifacts
+deleted_time: 1726586820191
+end_time: 1726584120083
+entry_point_name: ''
+experiment_id: '378519257392658623'
+lifecycle_stage: deleted
+run_id: fdfd6f88db9f4ceb933d67ca1f61210a
+run_name: sassy-slug-809
+run_uuid: fdfd6f88db9f4ceb933d67ca1f61210a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726584119924
+status: 3
+tags: []
+user_id: donat

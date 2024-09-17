@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/378519257392658623/244324bee37f4a84930f80294f3f802a/artifacts
+deleted_time: 1726586820191
+end_time: 1726585143668
+entry_point_name: ''
+experiment_id: '378519257392658623'
+lifecycle_stage: deleted
+run_id: 244324bee37f4a84930f80294f3f802a
+run_name: popular-asp-83
+run_uuid: 244324bee37f4a84930f80294f3f802a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726585143527
+status: 3
+tags: []
+user_id: donat

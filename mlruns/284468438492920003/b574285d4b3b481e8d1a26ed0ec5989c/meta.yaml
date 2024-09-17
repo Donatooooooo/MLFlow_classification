@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/b574285d4b3b481e8d1a26ed0ec5989c/artifacts
+deleted_time: 1726588705047
+end_time: 1726588580367
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: deleted
+run_id: b574285d4b3b481e8d1a26ed0ec5989c
+run_name: orderly-rook-71
+run_uuid: b574285d4b3b481e8d1a26ed0ec5989c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726588580314
+status: 4
+tags: []
+user_id: donat

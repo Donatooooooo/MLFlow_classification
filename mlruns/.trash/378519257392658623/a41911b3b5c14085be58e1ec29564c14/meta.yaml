@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/378519257392658623/a41911b3b5c14085be58e1ec29564c14/artifacts
+deleted_time: 1726586820191
+end_time: 1726585695679
+entry_point_name: ''
+experiment_id: '378519257392658623'
+lifecycle_stage: deleted
+run_id: a41911b3b5c14085be58e1ec29564c14
+run_name: fearless-cub-593
+run_uuid: a41911b3b5c14085be58e1ec29564c14
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726585695539
+status: 3
+tags: []
+user_id: donat

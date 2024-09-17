@@ -1,0 +1,16 @@
+artifact_uri: file:///C:/Users/donat/Desktop/Progetti/mlFlow/mlruns/0/7c2db250f2404c268c8189aa05c14322/artifacts
+deleted_time: 1726583441769
+end_time: 1726562383748
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 7c2db250f2404c268c8189aa05c14322
+run_name: unruly-goose-226
+run_uuid: 7c2db250f2404c268c8189aa05c14322
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726562383718
+status: 3
+tags: []
+user_id: donat

@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/7ee65741f2974f6c97a13eb18c75b912/artifacts
+deleted_time: 1726591266101
+end_time: 1726590905125
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: deleted
+run_id: 7ee65741f2974f6c97a13eb18c75b912
+run_name: hilarious-asp-26
+run_uuid: 7ee65741f2974f6c97a13eb18c75b912
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726590893866
+status: 3
+tags: []
+user_id: donat

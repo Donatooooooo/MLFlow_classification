@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/4930e170d16f4089817455af8abaa8db/artifacts
+deleted_time: 1726589368641
+end_time: 1726589343812
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: deleted
+run_id: 4930e170d16f4089817455af8abaa8db
+run_name: trusting-goose-897
+run_uuid: 4930e170d16f4089817455af8abaa8db
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726589343765
+status: 3
+tags: []
+user_id: donat

@@ -1,0 +1,7 @@
+artifact_location: mlflow-artifacts:/378519257392658623
+creation_time: 1726583463019
+experiment_id: '378519257392658623'
+last_update_time: 1726586820191
+lifecycle_stage: deleted
+name: Random Forest cancer classification
+tags: {}

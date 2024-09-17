@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/a8a4d6488db84e3db4b50b4ea95d5b9e/artifacts
+deleted_time: 1726591266103
+end_time: 1726591015607
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: deleted
+run_id: a8a4d6488db84e3db4b50b4ea95d5b9e
+run_name: sedate-swan-624
+run_uuid: a8a4d6488db84e3db4b50b4ea95d5b9e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726591005755
+status: 3
+tags: []
+user_id: donat

@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/b2c6aa365f264ee295eac43a37e2a3f5/artifacts
+deleted_time: 1726588705046
+end_time: 1726588632450
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: deleted
+run_id: b2c6aa365f264ee295eac43a37e2a3f5
+run_name: unleashed-shrimp-175
+run_uuid: b2c6aa365f264ee295eac43a37e2a3f5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726588632394
+status: 4
+tags: []
+user_id: donat

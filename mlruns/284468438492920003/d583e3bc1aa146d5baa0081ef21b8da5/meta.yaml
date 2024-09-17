@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/d583e3bc1aa146d5baa0081ef21b8da5/artifacts
+end_time: 1726591293039
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: active
+run_id: d583e3bc1aa146d5baa0081ef21b8da5
+run_name: fearless-mare-78
+run_uuid: d583e3bc1aa146d5baa0081ef21b8da5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726591283281
+status: 3
+tags: []
+user_id: donat

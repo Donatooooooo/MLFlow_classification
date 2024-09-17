@@ -1,0 +1,16 @@
+artifact_uri: file:///C:/Users/donat/Desktop/Progetti/mlFlow/mlruns/0/0bfbae3c56ed41299b3801e7d142f906/artifacts
+deleted_time: 1726583441771
+end_time: 1726562114695
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 0bfbae3c56ed41299b3801e7d142f906
+run_name: victorious-doe-729
+run_uuid: 0bfbae3c56ed41299b3801e7d142f906
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726562114658
+status: 4
+tags: []
+user_id: donat

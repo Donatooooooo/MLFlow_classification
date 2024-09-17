@@ -1,0 +1,16 @@
+artifact_uri: file:///C:/Users/donat/Desktop/Progetti/mlFlow/mlruns/0/e1d90d5da24f4f9c9eb9740d186f3110/artifacts
+deleted_time: 1726583441764
+end_time: 1726562130392
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: e1d90d5da24f4f9c9eb9740d186f3110
+run_name: able-sow-416
+run_uuid: e1d90d5da24f4f9c9eb9740d186f3110
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726562130361
+status: 3
+tags: []
+user_id: donat
