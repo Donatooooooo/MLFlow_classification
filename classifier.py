@@ -67,8 +67,8 @@ class ModelTrainerClass:
             result["predicted_class"] = predictions
             result[:10]
             
-            result.to_csv('Dataset/predictions.csv', index=False)
-            mlflow.log_artifact('Dataset/predictions.csv', "predictions.csv")
+            result.to_csv('Evaluation/predictions.csv', index=False)
+            mlflow.log_artifact('Evaluation/predictions.csv', "predictions.csv")
         mlflow.end_run()
 
     def saveBestParams(self, best_params, name):
