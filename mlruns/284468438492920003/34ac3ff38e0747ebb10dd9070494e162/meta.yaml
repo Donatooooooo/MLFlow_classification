@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/34ac3ff38e0747ebb10dd9070494e162/artifacts
+deleted_time: 1726651896117
+end_time: 1726651856414
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: deleted
+run_id: 34ac3ff38e0747ebb10dd9070494e162
+run_name: wistful-snake-421
+run_uuid: 34ac3ff38e0747ebb10dd9070494e162
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726651849558
+status: 4
+tags: []
+user_id: donat

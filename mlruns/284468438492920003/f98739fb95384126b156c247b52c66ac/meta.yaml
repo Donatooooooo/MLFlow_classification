@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/f98739fb95384126b156c247b52c66ac/artifacts
+end_time: 1726649583962
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: active
+run_id: f98739fb95384126b156c247b52c66ac
+run_name: selective-elk-431
+run_uuid: f98739fb95384126b156c247b52c66ac
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726649575452
+status: 3
+tags: []
+user_id: donat

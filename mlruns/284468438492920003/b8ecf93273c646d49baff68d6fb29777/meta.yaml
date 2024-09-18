@@ -1,8 +1,9 @@
 artifact_uri: mlflow-artifacts:/284468438492920003/b8ecf93273c646d49baff68d6fb29777/artifacts
+deleted_time: 1726649539427
 end_time: 1726587771838
 entry_point_name: ''
 experiment_id: '284468438492920003'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: b8ecf93273c646d49baff68d6fb29777
 run_name: wise-owl-701
 run_uuid: b8ecf93273c646d49baff68d6fb29777
