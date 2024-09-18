@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/5373b2eb844f4bd0b2d9ad1c1eda9aed/artifacts
+end_time: 1726674982857
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: active
+run_id: 5373b2eb844f4bd0b2d9ad1c1eda9aed
+run_name: wise-hound-393
+run_uuid: 5373b2eb844f4bd0b2d9ad1c1eda9aed
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726674975227
+status: 3
+tags: []
+user_id: donat

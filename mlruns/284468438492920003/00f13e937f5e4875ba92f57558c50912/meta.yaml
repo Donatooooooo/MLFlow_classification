@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/00f13e937f5e4875ba92f57558c50912/artifacts
+deleted_time: 1726674762118
+end_time: 1726674423221
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: deleted
+run_id: 00f13e937f5e4875ba92f57558c50912
+run_name: trusting-lark-875
+run_uuid: 00f13e937f5e4875ba92f57558c50912
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726674416273
+status: 3
+tags: []
+user_id: donat

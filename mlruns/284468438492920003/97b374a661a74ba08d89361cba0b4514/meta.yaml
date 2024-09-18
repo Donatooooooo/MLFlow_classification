@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/97b374a661a74ba08d89361cba0b4514/artifacts
+deleted_time: 1726674104571
+end_time: 1726674007852
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: deleted
+run_id: 97b374a661a74ba08d89361cba0b4514
+run_name: ambitious-doe-901
+run_uuid: 97b374a661a74ba08d89361cba0b4514
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726674000225
+status: 3
+tags: []
+user_id: donat

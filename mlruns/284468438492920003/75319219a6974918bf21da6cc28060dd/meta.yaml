@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/75319219a6974918bf21da6cc28060dd/artifacts
+end_time: 1726675147653
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: active
+run_id: 75319219a6974918bf21da6cc28060dd
+run_name: charming-shrew-592
+run_uuid: 75319219a6974918bf21da6cc28060dd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726675138980
+status: 3
+tags: []
+user_id: donat

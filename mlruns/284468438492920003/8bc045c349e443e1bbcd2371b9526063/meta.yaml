@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/8bc045c349e443e1bbcd2371b9526063/artifacts
+deleted_time: 1726674104571
+end_time: 1726673946881
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: deleted
+run_id: 8bc045c349e443e1bbcd2371b9526063
+run_name: aged-crane-390
+run_uuid: 8bc045c349e443e1bbcd2371b9526063
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726673946801
+status: 3
+tags: []
+user_id: donat

@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/b0b346ed978b4115bc4551072f90ebfc/artifacts
+deleted_time: 1726674749080
+end_time: 1726674551349
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: deleted
+run_id: b0b346ed978b4115bc4551072f90ebfc
+run_name: clean-shad-815
+run_uuid: b0b346ed978b4115bc4551072f90ebfc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726674551264
+status: 3
+tags: []
+user_id: donat

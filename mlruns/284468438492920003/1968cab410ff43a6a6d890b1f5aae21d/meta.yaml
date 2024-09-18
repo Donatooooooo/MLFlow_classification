@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/1968cab410ff43a6a6d890b1f5aae21d/artifacts
+deleted_time: 1726674223355
+end_time: 1726674201078
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: deleted
+run_id: 1968cab410ff43a6a6d890b1f5aae21d
+run_name: worried-moose-190
+run_uuid: 1968cab410ff43a6a6d890b1f5aae21d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726674200980
+status: 3
+tags: []
+user_id: donat

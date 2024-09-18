@@ -1,8 +1,9 @@
 artifact_uri: mlflow-artifacts:/284468438492920003/009b39529a834d098046f8f8e4bb622e/artifacts
+deleted_time: 1726674118481
 end_time: 1726589384276
 entry_point_name: ''
 experiment_id: '284468438492920003'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 009b39529a834d098046f8f8e4bb622e
 run_name: gentle-deer-560
 run_uuid: 009b39529a834d098046f8f8e4bb622e

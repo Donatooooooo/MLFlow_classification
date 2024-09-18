@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/61ea837efcaf4be3bd52634f7569f620/artifacts
+deleted_time: 1726674749079
+end_time: 1726674423888
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: deleted
+run_id: 61ea837efcaf4be3bd52634f7569f620
+run_name: colorful-shrike-588
+run_uuid: 61ea837efcaf4be3bd52634f7569f620
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726674423804
+status: 3
+tags: []
+user_id: donat

@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/5cc0f58f30f14574902dfd2c1885c2b1/artifacts
+deleted_time: 1726674919865
+end_time: 1726674908982
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: deleted
+run_id: 5cc0f58f30f14574902dfd2c1885c2b1
+run_name: entertaining-elk-242
+run_uuid: 5cc0f58f30f14574902dfd2c1885c2b1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726674901137
+status: 4
+tags: []
+user_id: donat

@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/fa7d972b8cf24e93ae907930852082cc/artifacts
+deleted_time: 1726674749079
+end_time: 1726674550648
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: deleted
+run_id: fa7d972b8cf24e93ae907930852082cc
+run_name: monumental-finch-698
+run_uuid: fa7d972b8cf24e93ae907930852082cc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726674543653
+status: 3
+tags: []
+user_id: donat

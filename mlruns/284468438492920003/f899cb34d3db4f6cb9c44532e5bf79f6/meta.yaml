@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/f899cb34d3db4f6cb9c44532e5bf79f6/artifacts
+deleted_time: 1726674344705
+end_time: 1726674200359
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: deleted
+run_id: f899cb34d3db4f6cb9c44532e5bf79f6
+run_name: monumental-hound-838
+run_uuid: f899cb34d3db4f6cb9c44532e5bf79f6
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726674192738
+status: 3
+tags: []
+user_id: donat

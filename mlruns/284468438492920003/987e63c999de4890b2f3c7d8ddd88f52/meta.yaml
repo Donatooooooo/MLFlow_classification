@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/987e63c999de4890b2f3c7d8ddd88f52/artifacts
+deleted_time: 1726674816488
+end_time: 1726673946225
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: deleted
+run_id: 987e63c999de4890b2f3c7d8ddd88f52
+run_name: respected-mouse-638
+run_uuid: 987e63c999de4890b2f3c7d8ddd88f52
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726673937749
+status: 3
+tags: []
+user_id: donat
