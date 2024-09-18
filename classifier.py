@@ -40,7 +40,7 @@ class ModelTrainerClass:
         mlflow.set_experiment("Random Forest")
 
         with mlflow.start_run():
-            tag = "Random forest with kMeans"
+            tag = "Random forest"
             mlflow.set_tag("Training Info", tag)
     
             mlflow.log_metric("Accuracy", accuracy)
@@ -58,15 +58,17 @@ class ModelTrainerClass:
                 input_example = X_test,
                 registered_model_name = tag,
             )
-            
-        loadedModel = mlflow.pyfunc.load_model(modelInfo.model_uri)
-        predictions = loadedModel.predict(X_test)
-        featureNames = self.dataset.getDataset().columns.tolist()
-        result = pd.DataFrame(X_test, columns = featureNames)
-        result["actual_class"] = y_test
-        result["predicted_class"] = predictions
 
-        result[:4]
+            loadedModel = mlflow.pyfunc.load_model(modelInfo.model_uri)
+            predictions = loadedModel.predict(X_test)
+            featureNames = self.dataset.getDataset().columns.tolist()
+            result = pd.DataFrame(X_test, columns = featureNames)
+            result["actual_class"] = y_test
+            result["predicted_class"] = predictions
+            result[:10]
+            
+            result.to_csv('Dataset/predictions.csv', index=False)
+            mlflow.log_artifact('Dataset/predictions.csv', "predictions.csv")
         mlflow.end_run()
 
     def saveBestParams(self, best_params, name):
