@@ -19,7 +19,7 @@ Per poter studiare i due strumenti viene utilizzato un modello di apprendimento 
 Dopo una breve fase di preprocessing dei dati viene addestrato il modello. Per confrontare diverse opzioni tramite MLFLow, viene addestrata inizialmente una random forest e successivamente una random forest integrata con k-Means. Al termine dell'addestramento entra in gioco MLFlow attraverso il comando 'mlflow.start_run()'.
 
 ### Tracking
-Tutti gli esperimenti, distinti dalle run, vengono salvati da MLFlow. Attravreso l'interfaccia grafica è possibile metterli a confronto.
+Tutti gli esperimenti, distinti dalle run, vengono salvati da MLFlow. Attraverso l'interfaccia grafica è possibile metterli a confronto.
 
 ![experiments](/Evaluation/img/experiments.png)
 
