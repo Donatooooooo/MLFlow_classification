@@ -21,21 +21,21 @@ Dopo una breve fase di preprocessing dei dati viene addestrato il modello. Per c
 ### Tracking
 Tutti gli esperimenti, distinti dalle run, vengono salvati da MLFlow. Attravreso l'interfaccia grafica è possibile metterli a confronto.
 
-![experiments](\Evaluation\img\experiments.png)
+![experiments](/Evaluation/img/experiments.png)
 
 In ogni esperimento vengono salvate le metriche di valutazione, gli iperparametri scelti tramite GridSearch e informazioni generiche. 
 
-![sample](\Evaluation\img\sample.png)
+![sample](/Evaluation/img/sample.png)
 
 Gli artifacts sono file e dati generati o utilizzati durante il ciclo di vita di un esperimento di machine learning. Questi possono includere i modelli addestrati, le configurazioni e i dati di input/output. Gli artifacts sono fondamentali per tracciare e riprodurre esperimenti, poiché contengono informazioni cruciali per comprendere come è stato addestrato e utilizzato un modello.
 
-![artifacts](\Evaluation\img\artifacts.png)
+![artifacts](/Evaluation/img/artifacts.png)
 
 ### Model Registry
 
 Tutti i modelli, con le diverse versioni, tag e altre informazioni utili, vengono salvate in un archivio centralizzato. 
 
-![registry](\Evaluation\img\registry.png)
+![registry](/Evaluation/img/registry.png)
 
 ## Fonti consultate
 A. Chen et al., “Developments in MLflow: A System to Accelerate the Machine Learning Lifecycle,” in Proceedings of the 4th Workshop on Data Management for End-To-End Machine Learning, DEEM 2020 - In conjunction with the 2020 ACM SIGMOD/PODS Conference, 2020. doi: 10.1145/3399579.3399867.
