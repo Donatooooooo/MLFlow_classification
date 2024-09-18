@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/80b07595171442b099e9af5b02e0b94c/artifacts
+deleted_time: 1726675765998
+end_time: 1726675740338
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: deleted
+run_id: 80b07595171442b099e9af5b02e0b94c
+run_name: overjoyed-grub-88
+run_uuid: 80b07595171442b099e9af5b02e0b94c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726675732652
+status: 3
+tags: []
+user_id: donat

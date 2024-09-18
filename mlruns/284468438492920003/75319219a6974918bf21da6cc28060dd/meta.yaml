@@ -1,8 +1,9 @@
 artifact_uri: mlflow-artifacts:/284468438492920003/75319219a6974918bf21da6cc28060dd/artifacts
+deleted_time: 1726675755925
 end_time: 1726675147653
 entry_point_name: ''
 experiment_id: '284468438492920003'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 75319219a6974918bf21da6cc28060dd
 run_name: charming-shrew-592
 run_uuid: 75319219a6974918bf21da6cc28060dd

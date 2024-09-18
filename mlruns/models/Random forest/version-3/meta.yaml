@@ -1,14 +1,14 @@
 aliases: []
-creation_timestamp: 1726675146147
+creation_timestamp: 1726675881437
 current_stage: None
 description: ''
-last_updated_timestamp: 1726675146147
+last_updated_timestamp: 1726675881437
 name: Random forest
-run_id: 75319219a6974918bf21da6cc28060dd
+run_id: a1acf9fd7d664af1b59dcdf66e008e1c
 run_link: ''
-source: mlflow-artifacts:/284468438492920003/75319219a6974918bf21da6cc28060dd/artifacts/Random_Forest_Model
+source: mlflow-artifacts:/284468438492920003/a1acf9fd7d664af1b59dcdf66e008e1c/artifacts/Random_Forest_Model
 status: READY
 status_message: null
-storage_location: mlflow-artifacts:/284468438492920003/75319219a6974918bf21da6cc28060dd/artifacts/Random_Forest_Model
+storage_location: mlflow-artifacts:/284468438492920003/a1acf9fd7d664af1b59dcdf66e008e1c/artifacts/Random_Forest_Model
 user_id: null
 version: 3

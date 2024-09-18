@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/9684659693f54518a87b6d011c2370a4/artifacts
+deleted_time: 1726675861256
+end_time: 1726675787378
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: deleted
+run_id: 9684659693f54518a87b6d011c2370a4
+run_name: puzzled-gnu-479
+run_uuid: 9684659693f54518a87b6d011c2370a4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1726675779792
+status: 3
+tags: []
+user_id: donat
