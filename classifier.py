@@ -40,9 +40,8 @@ class ModelTrainerClass:
         mlflow.set_experiment("Random Forest")
 
         with mlflow.start_run():
-            tag = "Random forest"
+            tag = "Random forest with kMeans"
             mlflow.set_tag("Training Info", tag)
-            mlflow.sklearn.log_model(model, "Random_Forest_Model")
     
             mlflow.log_metric("Accuracy", accuracy)
             mlflow.log_metric('Precision', precision_micro)
