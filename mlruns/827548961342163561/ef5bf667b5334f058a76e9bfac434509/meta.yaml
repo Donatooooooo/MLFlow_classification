@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/827548961342163561/ef5bf667b5334f058a76e9bfac434509/artifacts
+deleted_time: 1727862231253
+end_time: 1727862208091
+entry_point_name: ''
+experiment_id: '827548961342163561'
+lifecycle_stage: deleted
+run_id: ef5bf667b5334f058a76e9bfac434509
+run_name: exultant-shrike-309
+run_uuid: ef5bf667b5334f058a76e9bfac434509
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727862199914
+status: 3
+tags: []
+user_id: donat

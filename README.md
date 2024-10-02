@@ -1,7 +1,7 @@
 # MLFlow
 Negli ultimi anni lo sviluppo e l'utilizzo di modelli di machine learning è diventato sempre più significativo. L'implementazione del software ML richiede varie fasi di sperimentazione fondamentali per garantirne il corretto funzionamento: gli sviluppatori utilizzano costantemente nuovi dataset, librerie e diversi iperparametri. Di fronte alla necessità di gestire i modelli testati e le informazioni affini, sono state introdotte varie piattaforme progettate per semplificare la gestione dell'intero ciclo di vita di strumenti ML.
 
-MLFlow è una piattaforma open source per la gestione del ciclo di vita di modelli apprendimento automatico progettata per funzionare con qualsiasi libreria e linguaggio di programmazione. Proprio come Databricks afferma: MLflow si concentra sull'intero ciclo di vita dei progetti di apprendimento automatico, assicurando che ogni fase sia gestibile, tracciabile e riproducibile.
+MLFlow è una piattaforma open source per la gestione del ciclo di vita di modelli apprendimento automatico progettata per funzionare con qualsiasi libreria e linguaggio di programmazione. Secondo la documentazione fornita da Databricks, MLflow si concentra sull'intero ciclo di vita dei progetti di apprendimento automatico, assicurando che ogni fase sia gestibile, tracciabile e riproducibile.
 
 MLFlow fornisce una serie di strumenti volti a semplificare il flusso di lavoro in ambito machine learning:
 1. Tracking: fornisce un API e una UI per la registrazione di parametri, versioni di codice, metriche e artefatti durante il processo ML. Attraverso la cattura delle informazioni, Tracking facilita la registrazione dei risultati su file locali o su un server, semplificando il confronto di più esecuzioni tra diversi utenti.
@@ -14,9 +14,13 @@ MLFlow fornisce una serie di strumenti volti a semplificare il flusso di lavoro 
 Sono stati analizzati gli strumenti 'Tracking' e 'Model Registry'.
 
 ## Test eseguito
-Per poter studiare i due strumenti viene utilizzato un modello di apprendimento supervisionato. Attraverso la random forest è possibile identificare la categoria a cui appartiene una nuova osservazione, basandosi su un insieme di dati di addestramento che contengono osservazioni già etichettate. 
+Per studiare i due strumenti di MLFlow, viene utilizzato un task di classificazione su un dataset che ha come obiettivo la diagnosi di tumori al seno. Il modello deve classificare se un tumore è maligno o benigno, basandosi sui valori di un insieme di feature (ad esempio, dimensioni e forma della massa tumorale). Poiché i dati di addestramento contengono osservazioni precendentemente etichettate, il problema rientra nell’apprendimento supervisionato. Dunque, il modello potrà generalizzare sui nuovi dati in input fornendo una previsione in base alle informazioni apprese in fase di addestramento. 
 
-Dopo una breve fase di preprocessing dei dati viene addestrato il modello. Per confrontare diverse opzioni tramite MLFLow, viene addestrata inizialmente una random forest e successivamente una random forest integrata con k-Means. Al termine dell'addestramento entra in gioco MLFlow attraverso il comando 'mlflow.start_run()'.
+Per risolvere il problema, viene utilizzato il modello Random Forest. La Random Forest è un algoritmo ensamble di apprendimento supervisionato che funziona combinando diversi decision tree. Ogni decision tree viene addestrato su un campione casuale dei dati, e la previsione finale viene è il voto della maggioranza degli alberi. La random Forest è stata scelta principalmente per la sua robustezza e per la capacità di generalizzare sui nuovi dati con un basso rischio di overfitting.
+
+Dopo una breve fase di preprocessing dei dati, la Random Forest viene addestrata attraverso i dati di training. Successivamente, per esplorare diverse strategie di miglioramento delle prestazioni, viene testata una variante del modello, combinando il clustering k-Means nel preprocessing. Questo permette di identificare gruppi simili di dati prima di applicare la Random Forest, fornendo un approccio potenzialmente più informato al task di classificazione. 
+
+L'addestramento del modello avviene all'interno di un 'run' di MLFlow. Un 'run' è un singolo esperimento di machine learning attraverso cui è possibile tracciare tutte le informazioni come iperparametri, metriche, artefatti e modelli in modo semplice e organizzato.
 
 ### Tracking
 Tutti gli esperimenti, distinti dalle run, vengono salvati da MLFlow. Attraverso l'interfaccia grafica è possibile metterli a confronto.

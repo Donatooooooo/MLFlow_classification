@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/827548961342163561/b97179d076bb4627bae22bc9d74e42c2/artifacts
+end_time: 1727771314662
+entry_point_name: ''
+experiment_id: '827548961342163561'
+lifecycle_stage: active
+run_id: b97179d076bb4627bae22bc9d74e42c2
+run_name: respected-sloth-52
+run_uuid: b97179d076bb4627bae22bc9d74e42c2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727771305851
+status: 3
+tags: []
+user_id: donat

@@ -1,0 +1,8 @@
+digest: 78e2e3c0
+name: dataset
+profile: '{"features_shape": [569, 29], "features_size": 16501, "features_nbytes":
+  132008}'
+schema: '{"mlflow_tensorspec": {"features": "[{\"type\": \"tensor\", \"tensor-spec\":
+  {\"dtype\": \"float64\", \"shape\": [-1, 29]}}]", "targets": null}}'
+source: '{"uri": "brest_cancer.csv"}'
+source_type: local

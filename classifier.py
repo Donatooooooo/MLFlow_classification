@@ -1,9 +1,8 @@
 from sklearn.model_selection import StratifiedKFold, train_test_split, GridSearchCV
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, make_scorer
 from sklearn.ensemble import RandomForestClassifier
-from mlflow.models import infer_signature
-import sys, json, mlflow, pandas as pd
 from os import path
+import sys, json
 
 sys.stdout.reconfigure(encoding='utf-8')
 sys.stderr.reconfigure(encoding='utf-8')
@@ -24,52 +23,24 @@ class ModelTrainerClass:
     def evaluateModel(self, model, X_test, y_test, best_params):
         y_pred = model.predict(X_test)
         accuracy = accuracy_score(y_test, y_pred)
-        precision_micro = precision_score(y_test, y_pred, average='micro')
-        recall_micro = recall_score(y_test, y_pred, average='micro')
-        f1_micro = f1_score(y_test, y_pred, average='micro')
-        f1_macro = f1_score(y_test, y_pred, average='macro')
+        precision_micro = float(precision_score(y_test, y_pred, average='micro'))
+        recall_micro = float(recall_score(y_test, y_pred, average='micro'))
+        f1_micro = float(f1_score(y_test, y_pred, average='micro'))
+        f1_macro = float(f1_score(y_test, y_pred, average='macro'))
 
-        print('Accuracy:', accuracy)
-        print('Precision (micro):', precision_micro)
-        print('Recall (micro):', recall_micro)
-        print('F1_micro score:', f1_micro)
-        print('F1_macro score:', f1_macro)
-        print('\n')
+        self.metrics ={
+            'Accuracy': accuracy,
+            'Precision': precision_micro,
+            'Recall': recall_micro,
+            'F1_micro score': f1_micro,
+            'F1_macro score': f1_macro
+        }
+        self.params = best_params
+        self.model = model
+        self.X = X_test
+        self.Y = y_test
         
-        mlflow.set_tracking_uri(uri="http://127.0.0.1:5000")
-        mlflow.set_experiment("Random Forest")
-
-        with mlflow.start_run():
-            tag = "Random forest"
-            mlflow.set_tag("Training Info", tag)
-    
-            mlflow.log_metric("Accuracy", accuracy)
-            mlflow.log_metric('Precision', precision_micro)
-            mlflow.log_metric('Recall', recall_micro)
-            mlflow.log_metric('F1_micro score', f1_micro)
-            mlflow.log_metric('F1_macro score', f1_macro)
-
-            mlflow.log_params(best_params)
-            
-            modelInfo = mlflow.sklearn.log_model(
-                sk_model = model,
-                artifact_path = "Random_Forest_Model",
-                signature = infer_signature(X_test, model.predict(X_test)),
-                input_example = X_test,
-                registered_model_name = tag,
-            )
-
-            loadedModel = mlflow.pyfunc.load_model(modelInfo.model_uri)
-            predictions = loadedModel.predict(X_test)
-            featureNames = self.dataset.getDataset().columns.tolist()
-            result = pd.DataFrame(X_test, columns = featureNames)
-            result["actual_class"] = y_test
-            result["predicted_class"] = predictions
-            result[:10]
-            
-            result.to_csv('Evaluation/predictions.csv', index=False)
-            mlflow.log_artifact('Evaluation/predictions.csv', "predictions.csv")
-        mlflow.end_run()
+        print("Model trained and evaluated\n")
 
     def saveBestParams(self, best_params, name):
         with open('Evaluation/best_params_' + name + '.json', 'w') as file:
@@ -110,7 +81,7 @@ class ModelTrainerClass:
 
         return best_model
 
-    def trainRandomForestClassifier(self):
+    def run(self):
         model = RandomForestClassifier(random_state=42)
         param_grid = {
             'n_estimators': [50, 100],
@@ -120,6 +91,18 @@ class ModelTrainerClass:
             'min_samples_leaf': [1, 2, 4]
         }
         self.learning(model, param_grid, "RandomForestClassifier")
-
-    def run(self):
-        self.trainRandomForestClassifier()
+        
+    def getMetrics(self):
+        return self.metrics
+    
+    def getParams(self):
+        return self.params
+    
+    def getModel(self):
+        return self.model
+    
+    def getX(self):
+        return self.X
+    
+    def getY(self):
+        return self.Y

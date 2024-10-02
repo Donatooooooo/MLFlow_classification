@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/827548961342163561/ca6d87a1b45440fa8dead16f9eac554e/artifacts
+deleted_time: 1727859933773
+end_time: 1727859483644
+entry_point_name: ''
+experiment_id: '827548961342163561'
+lifecycle_stage: deleted
+run_id: ca6d87a1b45440fa8dead16f9eac554e
+run_name: unruly-elk-408
+run_uuid: ca6d87a1b45440fa8dead16f9eac554e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727859483597
+status: 4
+tags: []
+user_id: donat
