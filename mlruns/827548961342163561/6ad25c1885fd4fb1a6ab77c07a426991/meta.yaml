@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/827548961342163561/6ad25c1885fd4fb1a6ab77c07a426991/artifacts
+deleted_time: 1727859933767
+end_time: 1727859725154
+entry_point_name: ''
+experiment_id: '827548961342163561'
+lifecycle_stage: deleted
+run_id: 6ad25c1885fd4fb1a6ab77c07a426991
+run_name: learned-wren-646
+run_uuid: 6ad25c1885fd4fb1a6ab77c07a426991
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727859725092
+status: 4
+tags: []
+user_id: donat

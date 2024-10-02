@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/827548961342163561/f4f4677d74c240ccbbe06c3115526cb0/artifacts
+deleted_time: 1727859933758
+end_time: 1727859750760
+entry_point_name: ''
+experiment_id: '827548961342163561'
+lifecycle_stage: deleted
+run_id: f4f4677d74c240ccbbe06c3115526cb0
+run_name: exultant-donkey-214
+run_uuid: f4f4677d74c240ccbbe06c3115526cb0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727859750682
+status: 4
+tags: []
+user_id: donat

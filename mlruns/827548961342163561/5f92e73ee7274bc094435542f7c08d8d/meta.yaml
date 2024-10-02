@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/827548961342163561/5f92e73ee7274bc094435542f7c08d8d/artifacts
+deleted_time: 1727862371558
+end_time: 1727862361760
+entry_point_name: ''
+experiment_id: '827548961342163561'
+lifecycle_stage: deleted
+run_id: 5f92e73ee7274bc094435542f7c08d8d
+run_name: lyrical-wren-338
+run_uuid: 5f92e73ee7274bc094435542f7c08d8d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727862353277
+status: 3
+tags: []
+user_id: donat

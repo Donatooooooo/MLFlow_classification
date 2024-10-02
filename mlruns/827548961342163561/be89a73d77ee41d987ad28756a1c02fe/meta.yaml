@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/827548961342163561/be89a73d77ee41d987ad28756a1c02fe/artifacts
+deleted_time: 1727859933759
+end_time: 1727859911914
+entry_point_name: ''
+experiment_id: '827548961342163561'
+lifecycle_stage: deleted
+run_id: be89a73d77ee41d987ad28756a1c02fe
+run_name: unique-tern-156
+run_uuid: be89a73d77ee41d987ad28756a1c02fe
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727859902616
+status: 4
+tags: []
+user_id: donat

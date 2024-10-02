@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/284468438492920003/9f6ca28cc93d4ef293309be703273a6e/artifacts
+deleted_time: 1727771202739
+end_time: 1727771101316
+entry_point_name: ''
+experiment_id: '284468438492920003'
+lifecycle_stage: deleted
+run_id: 9f6ca28cc93d4ef293309be703273a6e
+run_name: placid-foal-842
+run_uuid: 9f6ca28cc93d4ef293309be703273a6e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727771101107
+status: 4
+tags: []
+user_id: donat

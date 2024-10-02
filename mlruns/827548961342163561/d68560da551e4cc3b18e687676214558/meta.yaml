@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/827548961342163561/d68560da551e4cc3b18e687676214558/artifacts
+deleted_time: 1727859933773
+end_time: 1727859525201
+entry_point_name: ''
+experiment_id: '827548961342163561'
+lifecycle_stage: deleted
+run_id: d68560da551e4cc3b18e687676214558
+run_name: ambitious-rook-785
+run_uuid: d68560da551e4cc3b18e687676214558
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727859525123
+status: 4
+tags: []
+user_id: donat

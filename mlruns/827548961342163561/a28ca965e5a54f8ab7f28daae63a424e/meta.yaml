@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/827548961342163561/a28ca965e5a54f8ab7f28daae63a424e/artifacts
+deleted_time: 1727865471689
+end_time: 1727865432906
+entry_point_name: ''
+experiment_id: '827548961342163561'
+lifecycle_stage: deleted
+run_id: a28ca965e5a54f8ab7f28daae63a424e
+run_name: zealous-bass-214
+run_uuid: a28ca965e5a54f8ab7f28daae63a424e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727865424247
+status: 3
+tags: []
+user_id: donat
