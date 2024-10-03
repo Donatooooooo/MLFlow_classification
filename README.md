@@ -13,21 +13,21 @@ MLFlow fornisce una serie di strumenti volti a semplificare il flusso di lavoro 
 
 Sono stati analizzati gli strumenti 'Tracking' e 'Model Registry'.
 
-## Test eseguito
-Per studiare i due strumenti di MLFlow, viene utilizzato un task di classificazione su un dataset che ha come obiettivo la diagnosi di tumori al seno. Il modello deve classificare se un tumore è maligno o benigno, basandosi sui valori di un insieme di feature (ad esempio, dimensioni e forma della massa tumorale). Poiché i dati di addestramento contengono osservazioni precendentemente etichettate, il problema rientra nell’apprendimento supervisionato. Dunque, il modello potrà generalizzare sui nuovi dati in input fornendo una previsione in base alle informazioni apprese in fase di addestramento. 
+## Test 1: Tracciare il modello attraverso MLFlow
+Per studiare i due strumenti di MLFlow, viene utilizzato un task di classificazione su un dataset che ha come obiettivo la diagnosi di tumori al seno. Il modello deve classificare se un tumore è maligno o benigno, basandosi sui valori di un insieme di feature (ad esempio, dimensioni e forma della massa tumorale). Poiché i dati di addestramento contengono osservazioni precedentemente etichettate, il problema rientra nell’apprendimento supervisionato. Dunque, il modello potrà generalizzare sui nuovi dati in input fornendo una previsione in base alle informazioni apprese in fase di addestramento. 
 
-Per risolvere il problema, viene utilizzato il modello Random Forest. La Random Forest è un algoritmo ensamble di apprendimento supervisionato che funziona combinando diversi decision tree. Ogni decision tree viene addestrato su un campione casuale dei dati, e la previsione finale viene è il voto della maggioranza degli alberi. La random Forest è stata scelta principalmente per la sua robustezza e per la capacità di generalizzare sui nuovi dati con un basso rischio di overfitting.
+Per risolvere il problema viene utilizzato il modello Random Forest. La Random Forest è un algoritmo ensamble di apprendimento supervisionato che funziona combinando diversi decision tree. Ogni decision tree viene addestrato su un campione casuale di dati di training e la previsione finale è il voto della maggioranza degli alberi sulla categoria predetta. La random Forest è stata scelta principalmente per la sua robustezza e per la capacità di generalizzare sui nuovi dati con un basso rischio di overfitting.
 
-Dopo una breve fase di preprocessing dei dati, la Random Forest viene addestrata attraverso i dati di training. Successivamente, per esplorare diverse strategie di miglioramento delle prestazioni, viene testata una variante del modello, combinando il clustering k-Means nel preprocessing. Questo permette di identificare gruppi simili di dati prima di applicare la Random Forest, fornendo un approccio potenzialmente più informato al task di classificazione. 
+Dopo una breve fase di preprocessing dei dati, la Random Forest viene addestrata attraverso i dati di training. Successivamente, per esplorare le potenzialità di MLFlow oltre che strategie di miglioramento delle prestazioni, viene testata una variante del modello, combinando il clustering k-Means nel preprocessing. Questo permette di identificare gruppi simili di dati prima di applicare la Random Forest, fornendo un approccio potenzialmente più informato al task di classificazione. 
 
-L'addestramento del modello avviene all'interno di un 'run' di MLFlow. Un 'run' è un singolo esperimento di machine learning attraverso cui è possibile tracciare tutte le informazioni come iperparametri, metriche, artefatti e modelli in modo semplice e organizzato.
+L'addestramento del modello avviene all'interno di un 'run' di MLFlow. Un 'run' è un singolo esperimento di machine learning attraverso cui è possibile tracciare tutte le informazioni come iperparametri, metriche, artifacts e modelli in modo semplice e organizzato. Inoltre, svolgendo l'addestramento all'interno di un 'run', è possibile monitorare lo stato e l'avanzamento del processo in tempo reale attraverso l'interfaccia MLFlow. 
 
 ### Tracking
-Tutti gli esperimenti, distinti dalle run, vengono salvati da MLFlow. Attraverso l'interfaccia grafica è possibile metterli a confronto.
+Come già detto, MLFlow tracking è organizzato attorno al concetto di 'run'. Attraverso il comando 'mlflow.start_run()' tutte le operazioni di logging vengono associate al run corrente, permettendo di distinguere i diversi esperimenti. Inoltre, ogni volta che viene avviato un run, MLflow assegna un ID univoco al run stesso, facilitando la ripetizione degli esperimenti e il confronto attraverso l'interfaccia grafica messa a disposizione. Va specificato che, attraverso MLFlow Tracking, le informazioni tracciate possono essere salvate in locale o su un server remoto.
 
 ![experiments](/Evaluation/img/experiments.png)
 
-In ogni esperimento vengono salvate le metriche di valutazione, gli iperparametri scelti tramite GridSearch e informazioni generiche. 
+In ogni esperimento vengono salvate le metriche di valutazione, gli iperparametri scelti tramite GridSearch e informazioni legate al modello, allo stato e al dataset utilizzato oltre che informazioni di carattere più generale. 
 
 ![sample](/Evaluation/img/sample.png)
 
@@ -40,6 +40,8 @@ Gli artifacts sono file e dati generati o utilizzati durante il ciclo di vita di
 Tutti i modelli, con le diverse versioni, tag e altre informazioni utili, vengono salvate in un archivio centralizzato. 
 
 ![registry](/Evaluation/img/registry.png)
+
+## Test 2: estrapolare le informazioni attraverso MLFlow
 
 ## Fonti consultate
 A. Chen et al., “Developments in MLflow: A System to Accelerate the Machine Learning Lifecycle,” in Proceedings of the 4th Workshop on Data Management for End-To-End Machine Learning, DEEM 2020 - In conjunction with the 2020 ACM SIGMOD/PODS Conference, 2020. doi: 10.1145/3399579.3399867.
