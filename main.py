@@ -22,11 +22,3 @@ dataset = preprocessing(dataset)
 
 trainer = ModelTrainerClass('diagnosis', ['diagnosis'], dataset)
 trainAndLog(dataset, trainer, "RFclassifier v2", "Random forest with kMeans")
-
-
-# import mlflow.pyfunc
-
-# model = mlflow.pyfunc.load_model(model_uri=f"models:/{'Random forest'}/{'7'}")
-
-# model.predict(dataset.getDataset())
-

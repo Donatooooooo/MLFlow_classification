@@ -41,7 +41,7 @@ def trainAndLog(dataset : Dataset, trainer : ModelTrainerClass, experimentName, 
         # log delle metriche
         mlflow.log_metrics(trainer.getMetrics())
 
-        # resgistra il modello addestrato e le informazioni
+        # registra il modello addestrato e le informazioni
         X_test = trainer.getX()
         model = trainer.getModel()
         modelInfo = mlflow.sklearn.log_model(
