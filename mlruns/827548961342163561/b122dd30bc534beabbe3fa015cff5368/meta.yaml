@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/827548961342163561/b122dd30bc534beabbe3fa015cff5368/artifacts
+end_time: 1727970184664
+entry_point_name: ''
+experiment_id: '827548961342163561'
+lifecycle_stage: active
+run_id: b122dd30bc534beabbe3fa015cff5368
+run_name: burly-snake-959
+run_uuid: b122dd30bc534beabbe3fa015cff5368
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727970142592
+status: 3
+tags: []
+user_id: donat

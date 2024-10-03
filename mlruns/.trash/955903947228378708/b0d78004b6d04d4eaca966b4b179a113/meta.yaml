@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/955903947228378708/b0d78004b6d04d4eaca966b4b179a113/artifacts
+deleted_time: 1727943780587
+end_time: 1727943182894
+entry_point_name: ''
+experiment_id: '955903947228378708'
+lifecycle_stage: deleted
+run_id: b0d78004b6d04d4eaca966b4b179a113
+run_name: nosy-lynx-288
+run_uuid: b0d78004b6d04d4eaca966b4b179a113
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727943146945
+status: 4
+tags: []
+user_id: donat

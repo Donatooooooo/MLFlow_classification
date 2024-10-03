@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/827548961342163561/78f70fe9e60a426b8ac24b247c2197d3/artifacts
+end_time: 1727950940416
+entry_point_name: ''
+experiment_id: '827548961342163561'
+lifecycle_stage: active
+run_id: 78f70fe9e60a426b8ac24b247c2197d3
+run_name: magnificent-carp-220
+run_uuid: 78f70fe9e60a426b8ac24b247c2197d3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727950922456
+status: 3
+tags: []
+user_id: donat

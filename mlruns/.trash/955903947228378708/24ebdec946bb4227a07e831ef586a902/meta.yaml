@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/955903947228378708/24ebdec946bb4227a07e831ef586a902/artifacts
+deleted_time: 1727943780587
+end_time: 1727943694679
+entry_point_name: ''
+experiment_id: '955903947228378708'
+lifecycle_stage: deleted
+run_id: 24ebdec946bb4227a07e831ef586a902
+run_name: sedate-sloth-411
+run_uuid: 24ebdec946bb4227a07e831ef586a902
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727943675371
+status: 3
+tags: []
+user_id: donat

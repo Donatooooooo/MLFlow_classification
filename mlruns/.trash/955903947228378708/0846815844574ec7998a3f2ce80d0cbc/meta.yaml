@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/955903947228378708/0846815844574ec7998a3f2ce80d0cbc/artifacts
+deleted_time: 1727943780587
+end_time: 1727943521647
+entry_point_name: ''
+experiment_id: '955903947228378708'
+lifecycle_stage: deleted
+run_id: 0846815844574ec7998a3f2ce80d0cbc
+run_name: suave-toad-171
+run_uuid: 0846815844574ec7998a3f2ce80d0cbc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727943521425
+status: 4
+tags: []
+user_id: donat

@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/955903947228378708/6c74b2b6f6c34469b6e2c388c5de7c5e/artifacts
+deleted_time: 1727943780587
+end_time: 1727941706172
+entry_point_name: ''
+experiment_id: '955903947228378708'
+lifecycle_stage: deleted
+run_id: 6c74b2b6f6c34469b6e2c388c5de7c5e
+run_name: calm-rook-815
+run_uuid: 6c74b2b6f6c34469b6e2c388c5de7c5e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727941697057
+status: 3
+tags: []
+user_id: donat

@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1727970067335
+current_stage: None
+description: ''
+last_updated_timestamp: 1727970067335
+name: Random forest with kMeans
+run_id: 66cfd09a85fd43b68ecda8c117235722
+run_link: ''
+source: mlflow-artifacts:/827548961342163561/66cfd09a85fd43b68ecda8c117235722/artifacts/Model_Info
+status: READY
+status_message: null
+storage_location: mlflow-artifacts:/827548961342163561/66cfd09a85fd43b68ecda8c117235722/artifacts/Model_Info
+user_id: null
+version: 17
