@@ -17,8 +17,8 @@ def preprocessing(dataset : Dataset):
     return dataset
 
 
-dataset = Dataset("Dataset/brest_cancer.csv")
-dataset = preprocessing(dataset)
+# dataset = Dataset("Dataset/brest_cancer.csv")
+# dataset = preprocessing(dataset)
 
-trainer = ModelTrainerClass('diagnosis', ['diagnosis'], dataset)
-trainAndLog(dataset, trainer, "RFclassifier v2", "Random forest with kMeans")
+# trainer = ModelTrainerClass('diagnosis', ['diagnosis'], dataset)
+# trainAndLog(dataset, trainer, "RFclassifier v2", "Random Forest")
