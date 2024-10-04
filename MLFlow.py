@@ -11,8 +11,7 @@ def makePredictionsArtifact(dataset : Dataset, modelInfo, X_test, y_test):
     result = pd.DataFrame(X_test, columns = featureNames)
     result["actual_class"] = y_test
     result["predicted_class"] = predictions
-    result[:10]
-    result.to_csv('Evaluation/predictions.csv', index=False)
+    result.sample(100).to_csv('Evaluation/predictions.csv', index=False)
 
 def trainAndLog(dataset : Dataset, trainer : ModelTrainerClass, experimentName, tag):
     
@@ -61,24 +60,47 @@ def trainAndLog(dataset : Dataset, trainer : ModelTrainerClass, experimentName, 
 #------------------------------------------------------------------------------------
 
 from mlflow.tracking import MlflowClient
+from datetime import datetime
+import json
 
-client = MlflowClient()
+def convertTime(unixTime):
+    return datetime.fromtimestamp(unixTime / 1000.0)
 
-# stampa info sul modello
-model_name = "Random forest with kMeans"
-model_versions = client.search_model_versions(f"name='{model_name}'")
+def extractInfo(tags):
+    data_tags = json.loads(tags.get('mlflow.log-model.history', ''))
+    flavors = data_tags[0]['flavors']
+    py_version = flavors['python_function']['python_version']
+    lib = str([key for key in flavors.keys() if key != 'python_function'][0])
+    lib_version = flavors[lib].get(f'{lib}_version')
+    return py_version, lib, lib_version
 
-for version in model_versions:
-    print("\n\n", version, "\n\n")
-    break
+def fetchAndCreateMD(modelName, version):
+    #ricerca il modello in base al nome
+    client = MlflowClient()
+    model_versions = client.search_model_versions(f"name='{modelName}'")
 
+    #estrapola il runID per ricercare tra le run degli esperimenti
+    runID = None
+    mlmodel = None
+    for item in model_versions:
+        if item.version == version:
+            runID = item.run_id
+            mlmodel = item.name
+            break
+    
+    if runID is None or mlmodel is None:
+        print("No model in Model Registry")
+        return
 
-# stampa info sull'esperimento
-experiment_id = "827548961342163561"
-best_run = client.search_runs(
-    experiment_id, order_by=["metrics.accuracy ASC"]
-)
-for run in best_run:
-    print(run)
-    break
+    run = client.get_run(runID)
+    
+    params = run.data.params
+    metrics = run.data.metrics
+    
+    py, lib, libv = extractInfo(run.data.tags)
+    startTime = convertTime(run.info.start_time)
+    endTime = convertTime(run.info.end_time)
+    
+    print(mlmodel, params, metrics, startTime, endTime, lib, libv, py, sep="\n")
 
+fetchAndCreateMD("Random forest with kMeans", 21)
