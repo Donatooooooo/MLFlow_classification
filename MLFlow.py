@@ -2,7 +2,7 @@ import mlflow.experiments
 from Dataset.dataset import Dataset
 from classifier import ModelTrainerClass
 from mlflow.models import infer_signature
-from util.util import inferModel
+from Utils.utility import inferModel
 import mlflow
 
 def trainAndLog(dataset : Dataset, trainer : ModelTrainerClass, experimentName, datasetName, tag):
@@ -51,7 +51,7 @@ def trainAndLog(dataset : Dataset, trainer : ModelTrainerClass, experimentName, 
 
 #------------------------------------------------------------------------------------
 from mlflow.tracking import MlflowClient
-from util.util import convertTime, extractInfoTags, extratDatasetName, organize
+from Utils.utility import convertTime, extractInfoTags, extratDatasetName, organize
 
 def fetchInfo(modelName, version):
     #ricerca il modello in base al nome
@@ -85,7 +85,6 @@ def fetchInfo(modelName, version):
                     datasetName, params, startTime, endTime, metrics]
 
 def createMD(modelName, version):
-    """Generates a markdown file documenting the model."""
     
     try:
         info = fetchInfo(modelName, version)

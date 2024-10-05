@@ -1,7 +1,7 @@
 from Dataset.dataset import Dataset
 from classifier import ModelTrainerClass
 from MLFlow import trainAndLog, createMD
-from util.util import preprocessing
+from Utils.utility import preprocessing
 
 
 dataset = Dataset("Dataset/brest_cancer.csv")
