@@ -2,18 +2,10 @@ import mlflow.experiments
 from Dataset.dataset import Dataset
 from classifier import ModelTrainerClass
 from mlflow.models import infer_signature
-import mlflow, pandas as pd
+from util.util import inferModel
+import mlflow
 
-def makePredictionsArtifact(dataset : Dataset, modelInfo, X_test, y_test):
-    loadedModel = mlflow.pyfunc.load_model(modelInfo.model_uri)
-    predictions = loadedModel.predict(X_test)
-    featureNames = dataset.getDataset().columns.tolist()
-    result = pd.DataFrame(X_test, columns = featureNames)
-    result["actual_class"] = y_test
-    result["predicted_class"] = predictions
-    result.sample(100).to_csv('Evaluation/predictions.csv', index=False)
-
-def trainAndLog(dataset : Dataset, trainer : ModelTrainerClass, experimentName, tag):
+def trainAndLog(dataset : Dataset, trainer : ModelTrainerClass, experimentName, datasetName, tag):
     
     mlflow.set_tracking_uri(uri="http://127.0.0.1:5000")
     
@@ -27,7 +19,7 @@ def trainAndLog(dataset : Dataset, trainer : ModelTrainerClass, experimentName, 
         mlflow.set_tag("Training Info", tag)
 
         # registra il dataset usato per l'addestramento
-        rawdata = mlflow.data.from_numpy(dataset.getDataset().to_numpy())
+        rawdata = mlflow.data.from_pandas(dataset.getDataset(), name = datasetName)
         mlflow.log_input(rawdata, context="training")
         
         # ricerca e log degli iperparametri
@@ -53,28 +45,15 @@ def trainAndLog(dataset : Dataset, trainer : ModelTrainerClass, experimentName, 
 
         # crea e registra un file di previsioni come artifact
         y_test = trainer.getY()
-        makePredictionsArtifact(dataset, modelInfo, X_test, y_test)
+        inferModel(dataset, modelInfo, X_test, y_test)
         mlflow.log_artifact('Evaluation/predictions.csv', "Predictions_Test")
     mlflow.end_run()
 
 #------------------------------------------------------------------------------------
-
 from mlflow.tracking import MlflowClient
-from datetime import datetime
-import json
+from util.util import convertTime, extractInfoTags, extratDatasetName, organize
 
-def convertTime(unixTime):
-    return datetime.fromtimestamp(unixTime / 1000.0)
-
-def extractInfo(tags):
-    data_tags = json.loads(tags.get('mlflow.log-model.history', ''))
-    flavors = data_tags[0]['flavors']
-    py_version = flavors['python_function']['python_version']
-    lib = str([key for key in flavors.keys() if key != 'python_function'][0])
-    lib_version = flavors[lib].get(f'{lib}_version')
-    return py_version, lib, lib_version
-
-def fetchAndCreateMD(modelName, version):
+def fetchInfo(modelName, version):
     #ricerca il modello in base al nome
     client = MlflowClient()
     model_versions = client.search_model_versions(f"name='{modelName}'")
@@ -87,20 +66,54 @@ def fetchAndCreateMD(modelName, version):
             runID = item.run_id
             mlmodel = item.name
             break
-    
+
     if runID is None or mlmodel is None:
-        print("No model in Model Registry")
-        return
+        raise ValueError("No model in Model Registry")
 
     run = client.get_run(runID)
     
     params = run.data.params
     metrics = run.data.metrics
+    userID = run.info.user_id
     
-    py, lib, libv = extractInfo(run.data.tags)
+    py, lib, libv = extractInfoTags(run.data.tags)
+    datasetName = extratDatasetName(run.inputs.dataset_inputs)
     startTime = convertTime(run.info.start_time)
     endTime = convertTime(run.info.end_time)
     
-    print(mlmodel, params, metrics, startTime, endTime, lib, libv, py, sep="\n")
+    return [mlmodel, version, userID, lib, libv, py, 
+                    datasetName, params, startTime, endTime, metrics]
 
-fetchAndCreateMD("Random forest with kMeans", 21)
+def createMD(modelName, version):
+    """Generates a markdown file documenting the model."""
+    
+    try:
+        info = fetchInfo(modelName, version)
+    except Exception as e:
+        print(e)
+        return
+    
+    title = f"# {info[0]} - v{info[1]}\n"
+    
+    general_info = (
+        f"## General Information \n"
+        f"- Developed by: {info[2]}\n"
+        f"- Model Type: {info[0]}\n"
+        f"- {info[3]}: {info[4]}\n"
+        f"- Python Version: {info[5]}\n"
+    )
+    
+    params = organize("Parameters:", info[7])
+    
+    training_info = (
+        f"## Training Details\n"
+        f"- Dataset: {info[6]}\n"
+        f"- {params}\n"
+        f"- Training started at: {info[8]}\n"
+        f"- Training ended at: {info[9]}\n"
+    )
+    
+    eval_info = organize("## Evaluation", info[10])
+    
+    with open('MODELCARD.MD', 'w') as file:
+        file.write(f"{title}{general_info}{training_info}{eval_info}")
