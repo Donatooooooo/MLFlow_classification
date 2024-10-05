@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/827548961342163561/17572f74ed1740c1ab5621f902f20075/artifacts
+deleted_time: 1727968570559
+end_time: 1727968517737
+entry_point_name: ''
+experiment_id: '827548961342163561'
+lifecycle_stage: deleted
+run_id: 17572f74ed1740c1ab5621f902f20075
+run_name: nosy-gull-710
+run_uuid: 17572f74ed1740c1ab5621f902f20075
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727968280730
+status: 4
+tags: []
+user_id: donat

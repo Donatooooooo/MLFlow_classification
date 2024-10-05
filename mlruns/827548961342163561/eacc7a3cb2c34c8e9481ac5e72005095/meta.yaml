@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/827548961342163561/eacc7a3cb2c34c8e9481ac5e72005095/artifacts
+end_time: 1727970598756
+entry_point_name: ''
+experiment_id: '827548961342163561'
+lifecycle_stage: active
+run_id: eacc7a3cb2c34c8e9481ac5e72005095
+run_name: adaptable-duck-11
+run_uuid: eacc7a3cb2c34c8e9481ac5e72005095
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727970590003
+status: 3
+tags: []
+user_id: donat

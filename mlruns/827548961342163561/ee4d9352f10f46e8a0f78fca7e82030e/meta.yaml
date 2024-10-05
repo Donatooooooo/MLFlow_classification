@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/827548961342163561/ee4d9352f10f46e8a0f78fca7e82030e/artifacts
+end_time: 1727968970181
+entry_point_name: ''
+experiment_id: '827548961342163561'
+lifecycle_stage: active
+run_id: ee4d9352f10f46e8a0f78fca7e82030e
+run_name: chill-kit-632
+run_uuid: ee4d9352f10f46e8a0f78fca7e82030e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727968658715
+status: 3
+tags: []
+user_id: donat

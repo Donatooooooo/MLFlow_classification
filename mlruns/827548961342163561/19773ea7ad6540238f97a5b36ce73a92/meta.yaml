@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/827548961342163561/19773ea7ad6540238f97a5b36ce73a92/artifacts
+deleted_time: 1727974808640
+end_time: 1727973128510
+entry_point_name: ''
+experiment_id: '827548961342163561'
+lifecycle_stage: deleted
+run_id: 19773ea7ad6540238f97a5b36ce73a92
+run_name: smiling-foal-646
+run_uuid: 19773ea7ad6540238f97a5b36ce73a92
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727973128448
+status: 4
+tags: []
+user_id: donat

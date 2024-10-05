@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/955903947228378708/2b462e3a3a794a7b9e1abccab4ad5fb6/artifacts
+deleted_time: 1727942918977
+end_time: 1727942604484
+entry_point_name: ''
+experiment_id: '955903947228378708'
+lifecycle_stage: deleted
+run_id: 2b462e3a3a794a7b9e1abccab4ad5fb6
+run_name: victorious-goat-258
+run_uuid: 2b462e3a3a794a7b9e1abccab4ad5fb6
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727942601943
+status: 4
+tags: []
+user_id: donat

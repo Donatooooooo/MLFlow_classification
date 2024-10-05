@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/955903947228378708/4a8b512c45e0433ab621c91b4c41ceea/artifacts
+deleted_time: 1727943780587
+end_time: 1727943317135
+entry_point_name: ''
+experiment_id: '955903947228378708'
+lifecycle_stage: deleted
+run_id: 4a8b512c45e0433ab621c91b4c41ceea
+run_name: angry-crane-253
+run_uuid: 4a8b512c45e0433ab621c91b4c41ceea
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727943317010
+status: 4
+tags: []
+user_id: donat

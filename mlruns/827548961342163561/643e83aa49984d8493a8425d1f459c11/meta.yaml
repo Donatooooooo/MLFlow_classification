@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/827548961342163561/643e83aa49984d8493a8425d1f459c11/artifacts
+deleted_time: 1727969877074
+end_time: null
+entry_point_name: ''
+experiment_id: '827548961342163561'
+lifecycle_stage: deleted
+run_id: 643e83aa49984d8493a8425d1f459c11
+run_name: ambitious-lamb-788
+run_uuid: 643e83aa49984d8493a8425d1f459c11
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1727969848776
+status: 1
+tags: []
+user_id: donat
