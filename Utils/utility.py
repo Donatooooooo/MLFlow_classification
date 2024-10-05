@@ -1,7 +1,7 @@
 from datetime import datetime
 from Dataset.dataset import Dataset
 import mlflow, json, pandas as pd
-from util.kmeans import kMeans
+from Utils.kmeans import kMeans
 
 def preprocessing(dataset : Dataset):
     dataset.dropDatasetColumns(["id"])
