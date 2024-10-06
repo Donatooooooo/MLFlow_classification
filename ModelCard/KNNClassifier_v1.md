@@ -9,7 +9,7 @@
 - Parameters:
    - `algorithm` auto
    - `metric` euclidean
-   - `n_neighbors` 5
+   - `n_neighbors` 3
    - `weights` uniform
 
 - Training started at: 20:54:57 2024-10-05
