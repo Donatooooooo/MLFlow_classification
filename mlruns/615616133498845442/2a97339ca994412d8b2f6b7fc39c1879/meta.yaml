@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/615616133498845442/2a97339ca994412d8b2f6b7fc39c1879/artifacts
+end_time: 1728200325801
+entry_point_name: ''
+experiment_id: '615616133498845442'
+lifecycle_stage: active
+run_id: 2a97339ca994412d8b2f6b7fc39c1879
+run_name: rebellious-deer-44
+run_uuid: 2a97339ca994412d8b2f6b7fc39c1879
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728200320195
+status: 3
+tags: []
+user_id: donat

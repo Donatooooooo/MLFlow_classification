@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/615616133498845442/ba6303b0ff834f9a958d318cdc740eb1/artifacts
+end_time: 1728200320088
+entry_point_name: ''
+experiment_id: '615616133498845442'
+lifecycle_stage: active
+run_id: ba6303b0ff834f9a958d318cdc740eb1
+run_name: intrigued-quail-88
+run_uuid: ba6303b0ff834f9a958d318cdc740eb1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728200311349
+status: 3
+tags: []
+user_id: donat

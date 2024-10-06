@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/615616133498845442/15c76a3548d44f6c80f7be354b21d5a7/artifacts
+end_time: 1728199990335
+entry_point_name: ''
+experiment_id: '615616133498845442'
+lifecycle_stage: active
+run_id: 15c76a3548d44f6c80f7be354b21d5a7
+run_name: nosy-donkey-583
+run_uuid: 15c76a3548d44f6c80f7be354b21d5a7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728199979435
+status: 3
+tags: []
+user_id: donat
