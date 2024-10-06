@@ -1,19 +1,22 @@
 from datetime import datetime
+from Utils.kmeans import kMeans
 from Dataset.dataset import Dataset
 import mlflow, json, pandas as pd
-from Utils.kmeans import kMeans
 
-def preprocessing(dataset : Dataset):
+def preprocessing(dataset : Dataset, cluster = False):
     dataset.dropDatasetColumns(["id"])
     dataset.replaceBoolean("M", "B")
     for column in dataset.getDataset().columns:
         dataset.normalizeColumn(column)
     
-    features = dataset.getDataFrame(['radius_mean', 'texture_mean', 'perimeter_mean'])
-    kmeans = kMeans().clustering(features)
-    dataset.addDatasetColumn('Appearance Cluster', kmeans.fit_predict(features))
-    dataset.dropDatasetColumns(columnsToRemove=['radius_mean', 'texture_mean', 'perimeter_mean'])
-    dataset.normalizeColumn('Appearance Cluster')
+    if cluster:
+        features = dataset.getDataFrame(['radius_mean', 'texture_mean', 'perimeter_mean'])
+        kmeans = kMeans().clustering(features)
+        dataset.addDatasetColumn('Appearance Cluster', kmeans.fit_predict(features))
+        dataset.dropDatasetColumns(columnsToRemove=['radius_mean', 'texture_mean', 'perimeter_mean'])
+        dataset.normalizeColumn('Appearance Cluster')
+        
+    dataset.dropDatasetColumns(['Unnamed: 32'])
     return dataset
 
 def convertTime(unixTime):
@@ -35,7 +38,7 @@ def extratDatasetName(data):
 
 def inferModel(dataset : Dataset, modelInfo, X_test, y_test):
     loadedModel = mlflow.pyfunc.load_model(modelInfo.model_uri)
-    predictions = loadedModel.predict(X_test)
+    predictions = loadedModel.predict(X_test).argmax()
     featureNames = dataset.getDataset().columns.tolist()
     result = pd.DataFrame(X_test, columns = featureNames)
     result["actual_class"] = y_test
@@ -43,7 +46,7 @@ def inferModel(dataset : Dataset, modelInfo, X_test, y_test):
     result.sample(100).to_csv('Evaluation/predictions.csv', index=False)
     
 def organize(text, info):
-    string = f"{text}\n\n"
+    string = f"{text}\n"
     for key, value in info.items():
-        string += (f"   - `{key}` {value}\n\n")
+        string += (f"   - `{key}` {value}\n")
     return string
