@@ -5,7 +5,7 @@
    - [Test 2: Creazione di una Model Card attraverso le informazioni tracciate](#test-2-creazione-di-una-model-card-attraverso-le-informazioni-tracciate)
 3. [**Fonti consultate**](#fonti-consultate)
 
-# Struttura della repository
+# Struttura del repository
 ```
 |   main.py                                        <- Script principale che avvia i task di classificazione e la creazione delle Model Cards.
 |   MLFlow.py                                      <- Gestisce l'integrazione con MLflow.
@@ -15,7 +15,7 @@
 |       brest_cancer.csv                           <- Dataset usato per l'addestramento dei modelli.
 |       dataset.py                                 <- Gestisce un dataset csv.
 +---Evaluation
-|   |   best_params_KNNClassifier.json    	       <- Migliori parametri trovati per il classificatore KNN.
+|   |   best_params_KNNClassifier.json    	      <- Migliori parametri trovati per il classificatore KNN.
 |   |   best_params_RandomForestClassifier.json    <- Migliori parametri trovati per il classificatore Random Forest.
 |   |   predictions.csv                            <- File di predizioni usato come test nel caricamento di artifacts.
 |   +---img                                        <- Directory contenente le immagini usate nel file README.md.
