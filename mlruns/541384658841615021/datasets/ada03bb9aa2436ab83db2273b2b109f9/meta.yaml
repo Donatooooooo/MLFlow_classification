@@ -1,9 +1,0 @@
-digest: dcde28cb
-name: dataset
-profile: '{"features_shape": [569, 31], "features_size": 17639, "features_nbytes":
-  141112}'
-schema: '{"mlflow_tensorspec": {"features": "[{\"type\": \"tensor\", \"tensor-spec\":
-  {\"dtype\": \"float64\", \"shape\": [-1, 31]}}]", "targets": null}}'
-source: '{"tags": {"mlflow.user": "donat", "mlflow.source.name": "c:/Users/donat/Desktop/MLFlow_classification/main.py",
-  "mlflow.source.type": "LOCAL", "mlflow.source.git.commit": "5f324133c969bdfa74f1c2060a978bdc833477c9"}}'
-source_type: code

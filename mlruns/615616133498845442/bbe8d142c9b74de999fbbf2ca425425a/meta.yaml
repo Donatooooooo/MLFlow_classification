@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/615616133498845442/bbe8d142c9b74de999fbbf2ca425425a/artifacts
+end_time: 1728200596764
+entry_point_name: ''
+experiment_id: '615616133498845442'
+lifecycle_stage: active
+run_id: bbe8d142c9b74de999fbbf2ca425425a
+run_name: melodic-conch-761
+run_uuid: bbe8d142c9b74de999fbbf2ca425425a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728200585832
+status: 3
+tags: []
+user_id: donat
