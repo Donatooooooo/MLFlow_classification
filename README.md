@@ -15,7 +15,7 @@
 |       brest_cancer.csv                           <- Dataset usato per l'addestramento dei modelli.
 |       dataset.py                                 <- Gestisce un dataset csv.
 +---Evaluation
-|   |   best_params_KNNClassifier.json    	      <- Migliori parametri trovati per il classificatore KNN.
+|   |   best_params_KNNClassifier.json             <- Migliori parametri trovati per il classificatore KNN.
 |   |   best_params_RandomForestClassifier.json    <- Migliori parametri trovati per il classificatore Random Forest.
 |   |   predictions.csv                            <- File di predizioni usato come test nel caricamento di artifacts.
 |   +---img                                        <- Directory contenente le immagini usate nel file README.md.
