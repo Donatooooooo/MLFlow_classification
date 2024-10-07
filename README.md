@@ -1,3 +1,31 @@
+# Indice
+1. [**Struttura della repository**](#struttura-della-repository)
+2. [**MLFlow**](#mlflow)
+   - [Test 1: Tracciare il modello attraverso MLFlow](#test-1-tracciare-il-modello-attraverso-mlflow)
+   - [Test 2: Creazione di una Model Card attraverso le informazioni tracciate](#test-2-creazione-di-una-model-card-attraverso-le-informazioni-tracciate)
+3. [**Fonti consultate**](#fonti-consultate)
+
+# Struttura della repository
+```
+|   main.py                                        <- Script principale che avvia i task di classificazione e la creazione delle Model Cards.
+|   MLFlow.py                                      <- Gestisce l'integrazione con MLflow.
+|   README.md                                      <- File descrittivo dei test eseguiti.
++---Classifiers                                    <- Directory contenetente i classificatori usati per testare il tracciamento di MLFlow.
++---Dataset
+|       brest_cancer.csv                           <- Dataset usato per l'addestramento dei modelli.
+|       dataset.py                                 <- Gestisce un dataset csv.
++---Evaluation
+|   |   best_params_KNNClassifier.json    	       <- Migliori parametri trovati per il classificatore KNN.
+|   |   best_params_RandomForestClassifier.json    <- Migliori parametri trovati per il classificatore Random Forest.
+|   |   predictions.csv                            <- File di predizioni usato come test nel caricamento di artifacts.
+|   +---img                                        <- Directory contenente le immagini usate nel file README.md.
++---mlartifacts                                    <- Directory usata da MLFlow per lo storage degli artifacts.
++---mlruns                                         <- Directory usata da MLFlow per lo storage degli esperimenti e run relativi.
++---ModelCards                                     <- Directory contenente le Model Cards create in fase di test.
++---Utils
+        kmeans.py                                  <- Contiene i metodi per effettuare il clustering di dati.
+        utility.py                                 <- Contiene delle funzioni di supporto.
+```
 # MLFlow
 Negli ultimi anni lo sviluppo e l'utilizzo di modelli di machine learning è diventato sempre più significativo. L'implementazione del software ML richiede varie fasi di sperimentazione fondamentali per garantirne il corretto funzionamento: gli sviluppatori utilizzano costantemente nuovi dataset, librerie e diversi iperparametri. Di fronte alla necessità di gestire i modelli testati e le informazioni affini, sono state introdotte varie piattaforme progettate per semplificare la gestione dell'intero ciclo di vita di strumenti ML.
 
@@ -31,7 +59,7 @@ In ogni esperimento vengono salvate le metriche di valutazione, gli iperparametr
 
 ![sample](/Evaluation/img/sample.png)
 
-Gli artifacts sono file e dati generati o utilizzati durante il ciclo di vita di un esperimento di machine learning. Questi possono includere i modelli addestrati, le configurazioni e i dati di input/output. Gli artifacts sono fondamentali per tracciare e riprodurre esperimenti, poiché contengono informazioni cruciali per comprendere come è stato addestrato e utilizzato un modello.
+Gli artifacts sono file e dati generati o utilizzati durante il ciclo di vita di un esperimento di machine learning. Questi possono includere i modelli addestrati, le configurazioni e i dati di input/output. Gli artifacts sono fondamentali per tracciare e riprodurre esperimenti, poiché contengono informazioni cruciali per comprendere come è stato addestrato e utilizzato un modello. Inoltre è stato sfruttato il modello caricato per calcolare delle predizioni e salvarle in un file .csv in maniera tale da testare il caricamento di un artifact manualmente.
 
 ![artifacts](/Evaluation/img/artifacts.png)
 
@@ -81,7 +109,7 @@ Per testare la versatilità dell'algoritmo di creazione delle Model Cards ho ins
    - `Elenco delle metriche`: elenco di tutte le metriche usata per valutare il modello
 ---
 
-## Fonti consultate
+# Fonti consultate
 A. Chen et al., “Developments in MLflow: A System to Accelerate the Machine Learning Lifecycle,” in Proceedings of the 4th Workshop on Data Management for End-To-End Machine Learning, DEEM 2020 - In conjunction with the 2020 ACM SIGMOD/PODS Conference, 2020. doi: 10.1145/3399579.3399867.
 
 https://mlflow.org/docs/2.16.2/index.html
