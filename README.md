@@ -37,12 +37,12 @@ Gli artifacts sono file e dati generati o utilizzati durante il ciclo di vita di
 
 ### Model Registry
 
-Tutti i modelli, con le diverse versioni, tag e altre informazioni utili, vengono salvate in un archivio centralizzato. 
+Tutti i modelli, con le diverse versioni, tag e altre informazioni utili, vengono salvate in un archivio centralizzato: il Model Registry.
 
 ![registry](/Evaluation/img/registry.png)
 
 ## Test 2: Creazione di una Model Card attraverso le informazioni tracciate
-Come già evidenziato, negli ultimi anni si è registrata un'espansione significativa nell'impiego di modelli di Machine Learning, anche in contesti critici, dove le decisioni possono avere conseguenze di grande rilevanza. In un tale contesto, la documentazione assume un ruolo cruciale per poter comprendere come vengono prese le decisioni e quali dati influenzano i processi decisionali. Di conseguenza, è fondamentale che gli sviluppatori si impegnino a fornire una documentazione chiara sui loro modelli.
+Come già evidenziato, negli ultimi anni si è registrata un'espansione significativa nell'impiego di modelli di Machine Learning, anche in contesti critici (come ad esempio la medicina), dove le decisioni possono avere conseguenze di grande rilevanza. In un tale contesto, la documentazione assume un ruolo cruciale per poter comprendere come vengono prese le decisioni e quali dati influenzano i processi decisionali. Di conseguenza, è fondamentale che gli sviluppatori si impegnino a fornire una documentazione chiara sui loro modelli.
 
 Un tipo di documentazione popolare per i modelli di Machine Learning sono le Model Cards. Ampiamente sfruttate su Hugging Face, una piattaforma incentrata sullo sviluppo e sulla condivisione di modelli di apprendimento, una Model Card è un documento che fornisce una descrizione dell'algoritmo attraverso delle informazioni essenziali come ad esempio i task che è in grado di compiere, le prestazioni, dati di addestramento e metriche di valutazione, oltre che le limitazioni del modello stesso. Lo scopo principale di una Model Card è quello di favorire una comprensione approfondita garantendo un uso responsabile dei modelli di intelligenza artificiale.
 
@@ -54,15 +54,15 @@ Una Model Card segue un formato standard che include generalmente:
 - Limitazioni: Specifica i limiti d'uso del modello e i contesti in cui potrebbe non essere adeguato.
 - Uso raccomandato: Spiega in quali contesti è adatto il modello.
 
-Creare la documentazione, tuttavia, può rivelarsi un processo impegnativo e oneroso in termini di tempo. Pertanto, è essenziale avere a disposizione degli strumenti che consentano di generarla automaticamente, in particolare per tutte quelle informazioni standard come prestazioni, dati e parametri di addestramento e versioni del modello, al fine di garantire una certificazione adeguata del modello stesso.
+Creare la documentazione, tuttavia, può rivelarsi un processo impegnativo e oneroso in termini di tempo. Pertanto, è essenziale avere a disposizione degli strumenti che consentano di generarla automaticamente, in particolare per tutte quelle informazioni standard come prestazioni, dati e parametri di addestramento e versioni del modello, al fine di garantirne una certificazione adeguata. L'automazione diventa particolarmente importante quando si utilizzano strumenti come MLFlow, che registrano automaticamente informazioni durante la fase di addestramento, rendendole immediatamente disponibili per la documentazione senza la necessità di riscriverle manualmente.
 
-Il test eseguito ha riguardato la raccolta delle informazioni di un modello specificato in base al nome e alla versione. Così, le informazioni raccolte sono state poi inserite all'interno di un file markdown, ossia il formato delle Model Card. Attraverso l'utilizzo di MLFlow e delle informazioni tracciate nel Test 1, è possibile generare automaticamente una Model Card per ogni modello registrato all'interno del Model Registry. 
+Il test eseguito si è concentrato sulla raccolta di informazioni archiviate tramite MLFlow e relative a un modello specifico, identificato tramite nome e versione. Queste informazioni sono state poi organizzate e inserite in un file markdown, utilizzando quindi il formato di file delle Model Cards. Grazie all'uso di MLFlow e alle informazioni tracciate durante il Test 1, è stato possibile generare automaticamente delle Model Cards di modelli registrati nel Model Registry. 
 
-L'interrogazione del Model Registry avviene mediante la classe 'MlFlowCLient', la quale fornisce diversi metodi per ottenere i dettagli di un modello. Una volta trovata la versione del modello specificato, viene estratto il relativo run ID, ossia un identificatore unico assegnato ad ogni esecuzione di un esperimento. 
+L'interrogazione del Model Registry avviene mediante la classe 'MlFlowCLient', la quale fornisce diversi metodi per ottenere i dettagli di un modello. Una volta trovata la versione del modello specificato, viene estratto il relativo run ID, ossia un identificatore unico assegnato ad ogni esecuzione di un esperimento.
 
-L'identificatore ottenuto consente di individuare la run specifica all'interno degli esperimenti svolti. Grazie alla run è possibile recuperare una vasta gamma di informazioni, tra cui metriche, parametri scelti e altri dati generali che descrivono il contesto dell’addestramento (come ad esempio il dataset utilizzato). Quindi, i dati vengono opportunamente strutturati, automatizzando la creazione di alcune sezioni della Model Card.
+L'identificatore ottenuto consente di individuare la run specifica all'interno degli esperimenti svolti. Grazie alla run è possibile recuperare una vasta gamma di informazioni, tra cui metriche, parametri scelti e altri dati generali che descrivono il contesto dell’addestramento (come ad esempio il dataset utilizzato) relativi al modello. Quindi, i dati vengono opportunamente strutturati, automatizzando la creazione di alcune sezioni della Model Card.
 
-Tutte le Model Card create in fase di test si trovano nella cartella ModelCards del repository hanno la seguente struttura:
+Tutte le Model Cards create in fase di test sono state salvate nella cartella ModelCards del repository e hanno la seguente struttura:
 
 ---
 ### Model Name - version
