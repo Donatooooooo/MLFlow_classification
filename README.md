@@ -59,7 +59,7 @@ In ogni esperimento vengono salvate le metriche di valutazione, gli iperparametr
 
 ![sample](/Evaluation/img/sample.png)
 
-Gli artifacts sono file e dati generati o utilizzati durante il ciclo di vita di un esperimento di machine learning. Questi possono includere i modelli addestrati, le configurazioni e i dati di input/output. Gli artifacts sono fondamentali per tracciare e riprodurre esperimenti, poiché contengono informazioni cruciali per comprendere come è stato addestrato e utilizzato un modello. Alcuni artifact vengolo generati automaticamente da MLFLow durante il tracciamento del modello. Per testare il tracciamento manuale degli artifacts è stato sfruttato il modello caricato per calcolare delle predizioni e salvarle nel file predictions.csv che viene loggato al termine delle operazioni. 
+Gli artifacts sono file e dati generati o utilizzati durante il ciclo di vita di un esperimento di machine learning. Questi possono includere i modelli addestrati, le configurazioni e i dati di input/output. Gli artifacts sono fondamentali per tracciare e riprodurre esperimenti, poiché contengono informazioni cruciali per comprendere come è stato addestrato e utilizzato un modello. Alcuni artifact vengono generati automaticamente da MLFLow durante il tracciamento del modello. Per testare il tracciamento manuale degli artifacts è stato sfruttato il modello caricato per calcolare delle predizioni e salvarle nel file predictions.csv che viene loggato al termine delle operazioni. 
 
 ![artifacts](/Evaluation/img/artifacts.png)
 
@@ -86,7 +86,7 @@ Creare la documentazione, tuttavia, può rivelarsi un processo impegnativo e one
 
 Il test eseguito si è concentrato sulla raccolta di informazioni archiviate tramite MLFlow e relative a un modello specifico, identificato tramite nome e versione. Queste informazioni sono state poi organizzate e inserite in un file markdown, utilizzando quindi il formato di file delle Model Cards. Grazie all'uso di MLFlow e alle informazioni tracciate durante il Test 1, è stato possibile generare automaticamente delle Model Cards di modelli registrati nel Model Registry. 
 
-L'interrogazione del Model Registry avviene mediante la classe 'MlFlowCLient', la quale fornisce diversi metodi per ottenere i dettagli di un modello. Una volta trovata la versione del modello specificato, viene estratto il relativo run ID, ossia un identificatore unico assegnato ad ogni esecuzione di un esperimento.
+L'interrogazione del Model Registry avviene mediante la classe 'MlFlowCLient', la quale fornisce diversi metodi per ottenere i dettagli di un modello. Una volta trovata la versione del modello specificato, viene estratto il relativo run ID, ossia un identificatore unico assegnato a ogni esecuzione di un esperimento.
 
 L'identificatore ottenuto consente di individuare la run specifica all'interno degli esperimenti svolti. Grazie alla run è possibile recuperare una vasta gamma di informazioni, tra cui metriche, parametri scelti e altri dati generali che descrivono il contesto dell’addestramento (come ad esempio il dataset utilizzato) relativi al modello. Quindi, i dati vengono opportunamente strutturati, automatizzando la creazione di alcune sezioni della Model Card.
 
