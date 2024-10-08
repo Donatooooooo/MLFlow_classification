@@ -1,5 +1,5 @@
 # Indice
-1. [**Struttura della repository**](#struttura-della-repository)
+1. [**Struttura del repository**](#struttura-del-repository)
 2. [**MLFlow**](#mlflow)
    - [Test 1: Tracciare il modello attraverso MLFlow](#test-1-tracciare-il-modello-attraverso-mlflow)
    - [Test 2: Creazione di una Model Card attraverso le informazioni tracciate](#test-2-creazione-di-una-model-card-attraverso-le-informazioni-tracciate)
@@ -59,7 +59,7 @@ In ogni esperimento vengono salvate le metriche di valutazione, gli iperparametr
 
 ![sample](/Evaluation/img/sample.png)
 
-Gli artifacts sono file e dati generati o utilizzati durante il ciclo di vita di un esperimento di machine learning. Questi possono includere i modelli addestrati, le configurazioni e i dati di input/output. Gli artifacts sono fondamentali per tracciare e riprodurre esperimenti, poiché contengono informazioni cruciali per comprendere come è stato addestrato e utilizzato un modello. Inoltre è stato sfruttato il modello caricato per calcolare delle predizioni e salvarle in un file .csv in maniera tale da testare il caricamento di un artifact manualmente.
+Gli artifacts sono file e dati generati o utilizzati durante il ciclo di vita di un esperimento di machine learning. Questi possono includere i modelli addestrati, le configurazioni e i dati di input/output. Gli artifacts sono fondamentali per tracciare e riprodurre esperimenti, poiché contengono informazioni cruciali per comprendere come è stato addestrato e utilizzato un modello. Alcuni artifact vengolo generati automaticamente da MLFLow durante il tracciamento del modello. Per testare il tracciamento manuale degli artifacts è stato sfruttato il modello caricato per calcolare delle predizioni e salvarle nel file predictions.csv che viene loggato al termine delle operazioni. 
 
 ![artifacts](/Evaluation/img/artifacts.png)
 
@@ -90,7 +90,7 @@ L'interrogazione del Model Registry avviene mediante la classe 'MlFlowCLient', l
 
 L'identificatore ottenuto consente di individuare la run specifica all'interno degli esperimenti svolti. Grazie alla run è possibile recuperare una vasta gamma di informazioni, tra cui metriche, parametri scelti e altri dati generali che descrivono il contesto dell’addestramento (come ad esempio il dataset utilizzato) relativi al modello. Quindi, i dati vengono opportunamente strutturati, automatizzando la creazione di alcune sezioni della Model Card.
 
-Per testare la versatilità dell'algoritmo di creazione delle Model Cards ho inserito nel progetto un K-nearest neighbors Classifier che svolge lo stesso task di classificazione della Random Forest del Test 1 e viene tracciato da MLFlow allo stesso modo. Tutte le Model Cards create in fase di test sono state salvate nella cartella ModelCards del repository e hanno la seguente struttura:
+Per testare la versatilità dell'algoritmo di creazione delle Model Cards è stato inserito nel progetto un K-nearest neighbors Classifier che svolge lo stesso task di classificazione della Random Forest del Test 1 e viene tracciato da MLFlow allo stesso modo. Tutte le Model Cards create in fase di test sono state salvate nella cartella ModelCards del repository e hanno la seguente struttura:
 
 ---
 ### Model Name - version

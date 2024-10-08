@@ -130,7 +130,7 @@ def createMD(modelName, version):
     
     part = info[0].replace(" ", "")
     fname = f"{part}_v{info[1]}.md"
-    path = f"ModelCard/{fname}"
+    path = f"ModelCards/{fname}"
     with open(path, 'w') as file:
         file.write(f"{title}{general_info}{training_info}{eval_info}")
 
