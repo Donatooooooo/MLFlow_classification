@@ -9,11 +9,11 @@
 - Parameters:
    - `algorithm` auto
    - `metric` euclidean
-   - `n_neighbors` 3
+   - `n_neighbors` 5
    - `weights` uniform
 
-- Training started at: 20:54:57 2024-10-05
-- Training ended at: 20:55:09 2024-10-05
+- Training started at: 11:04:11 2024-10-09
+- Training ended at: 11:04:20 2024-10-09
 ## Evaluation
    - `Accuracy` 0.9649122807017544
    - `F1_macro score` 0.9626596790042581

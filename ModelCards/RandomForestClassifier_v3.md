@@ -1,4 +1,4 @@
-# Random Forest Classifier - v4
+# Random Forest Classifier - v3
 ## General Information 
 - Developed by: donat
 - Model Type: Random Forest Classifier
@@ -7,14 +7,14 @@
 ## Training Details
 - Dataset: brest_cancer.csv
 - Parameters:
-   - `criterion` entropy
+   - `criterion` gini
    - `max_depth` None
-   - `min_samples_leaf` 4
-   - `min_samples_split` 2
+   - `min_samples_leaf` 1
+   - `min_samples_split` 5
    - `n_estimators` 50
 
-- Training started at: 09:39:03 2024-10-06
-- Training ended at: 09:43:05 2024-10-06
+- Training started at: 11:12:56 2024-10-09
+- Training ended at: 11:16:35 2024-10-09
 ## Evaluation
    - `Accuracy` 0.9649122807017544
    - `F1_macro score` 0.9623015873015872

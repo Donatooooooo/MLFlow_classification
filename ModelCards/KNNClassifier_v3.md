@@ -12,8 +12,8 @@
    - `n_neighbors` 3
    - `weights` uniform
 
-- Training started at: 09:38:40 2024-10-06
-- Training ended at: 09:38:45 2024-10-06
+- Training started at: 11:18:53 2024-10-09
+- Training ended at: 11:19:08 2024-10-09
 ## Evaluation
    - `Accuracy` 0.9649122807017544
    - `F1_macro score` 0.9626596790042581
