@@ -1,14 +1,14 @@
 aliases: []
-creation_timestamp: 1728154434500
+creation_timestamp: 1728464649235
 current_stage: None
 description: ''
-last_updated_timestamp: 1728154434500
+last_updated_timestamp: 1728464649235
 name: Random Forest Classifier
-run_id: d77690ae5160451b913e3c65a5c1c252
+run_id: 3eada6008d5b4fadac7db631d948be9e
 run_link: ''
-source: mlflow-artifacts:/615616133498845442/d77690ae5160451b913e3c65a5c1c252/artifacts/Model_Info
+source: mlflow-artifacts:/137593651161061693/3eada6008d5b4fadac7db631d948be9e/artifacts/Model_Info
 status: READY
 status_message: null
-storage_location: mlflow-artifacts:/615616133498845442/d77690ae5160451b913e3c65a5c1c252/artifacts/Model_Info
+storage_location: mlflow-artifacts:/137593651161061693/3eada6008d5b4fadac7db631d948be9e/artifacts/Model_Info
 user_id: null
 version: 1

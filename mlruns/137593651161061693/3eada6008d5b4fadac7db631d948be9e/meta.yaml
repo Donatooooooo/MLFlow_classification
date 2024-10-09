@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/137593651161061693/3eada6008d5b4fadac7db631d948be9e/artifacts
+end_time: 1728464650913
+entry_point_name: ''
+experiment_id: '137593651161061693'
+lifecycle_stage: active
+run_id: 3eada6008d5b4fadac7db631d948be9e
+run_name: rogue-asp-686
+run_uuid: 3eada6008d5b4fadac7db631d948be9e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728464429248
+status: 3
+tags: []
+user_id: donat

@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/137593651161061693/6f17f2396cd144e0870ca5f72c1a58ab/artifacts
+end_time: 1728465395193
+entry_point_name: ''
+experiment_id: '137593651161061693'
+lifecycle_stage: active
+run_id: 6f17f2396cd144e0870ca5f72c1a58ab
+run_name: bold-donkey-395
+run_uuid: 6f17f2396cd144e0870ca5f72c1a58ab
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728465176210
+status: 3
+tags: []
+user_id: donat

@@ -1,14 +1,14 @@
 aliases: []
-creation_timestamp: 1728200324809
+creation_timestamp: 1728465546559
 current_stage: None
 description: ''
-last_updated_timestamp: 1728200324809
+last_updated_timestamp: 1728465546559
 name: KNN Classifier
-run_id: 2a97339ca994412d8b2f6b7fc39c1879
+run_id: 1e33fb8677ce4c19a9cbcabd2e4ad498
 run_link: ''
-source: mlflow-artifacts:/615616133498845442/2a97339ca994412d8b2f6b7fc39c1879/artifacts/Model_Info
+source: mlflow-artifacts:/137593651161061693/1e33fb8677ce4c19a9cbcabd2e4ad498/artifacts/Model_Info
 status: READY
 status_message: null
-storage_location: mlflow-artifacts:/615616133498845442/2a97339ca994412d8b2f6b7fc39c1879/artifacts/Model_Info
+storage_location: mlflow-artifacts:/137593651161061693/1e33fb8677ce4c19a9cbcabd2e4ad498/artifacts/Model_Info
 user_id: null
 version: 3
