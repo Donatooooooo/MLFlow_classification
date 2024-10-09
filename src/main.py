@@ -7,7 +7,7 @@ import warnings, copy
 warnings.filterwarnings("ignore")
 
 
-dataset = Dataset("Dataset/brest_cancer.csv")
+dataset = Dataset("src/Dataset/brest_cancer.csv")
 dataset = preprocessing(dataset)
 
 experiment = "MultiClassifiers"
