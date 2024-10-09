@@ -1,7 +1,7 @@
 from datetime import datetime
 from Utils.kmeans import kMeans
 from Dataset.dataset import Dataset
-import mlflow, json, pandas as pd
+import mlflow, json, numpy as np, pandas as pd
 
 def preprocessing(dataset : Dataset, cluster = False):
     dataset.dropDatasetColumns(["id"])
@@ -38,9 +38,16 @@ def extratDatasetName(data):
 
 def inferModel(dataset : Dataset, modelInfo, X_test, y_test):
     loadedModel = mlflow.pyfunc.load_model(modelInfo.model_uri)
-    predictions = loadedModel.predict(X_test).argmax()
+    predictions = loadedModel.predict(X_test)
     featureNames = dataset.getDataset().columns.tolist()
     result = pd.DataFrame(X_test, columns = featureNames)
+    
+    if y_test.ndim > 1 and y_test.shape[1] > 1:
+        y_test = np.argmax(y_test, axis=1)
+        
+    if predictions.ndim > 1 and predictions.shape[1] > 1:
+        predictions = np.argmax(predictions, axis=1)
+    
     result["actual_class"] = y_test
     result["predicted_class"] = predictions
     result.sample(100).to_csv('Evaluation/predictions.csv', index=False)
