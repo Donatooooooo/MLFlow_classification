@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/137593651161061693/4c74e8ea0e1149f98135cf7713182ffe/artifacts
+end_time: 1728465026951
+entry_point_name: ''
+experiment_id: '137593651161061693'
+lifecycle_stage: active
+run_id: 4c74e8ea0e1149f98135cf7713182ffe
+run_name: funny-bat-494
+run_uuid: 4c74e8ea0e1149f98135cf7713182ffe
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728464761917
+status: 3
+tags: []
+user_id: donat

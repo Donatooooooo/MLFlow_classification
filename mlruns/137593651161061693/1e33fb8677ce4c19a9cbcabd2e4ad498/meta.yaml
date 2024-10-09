@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/137593651161061693/1e33fb8677ce4c19a9cbcabd2e4ad498/artifacts
+end_time: 1728465548099
+entry_point_name: ''
+experiment_id: '137593651161061693'
+lifecycle_stage: active
+run_id: 1e33fb8677ce4c19a9cbcabd2e4ad498
+run_name: bustling-trout-400
+run_uuid: 1e33fb8677ce4c19a9cbcabd2e4ad498
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728465533180
+status: 3
+tags: []
+user_id: donat

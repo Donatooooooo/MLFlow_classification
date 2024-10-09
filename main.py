@@ -10,7 +10,7 @@ warnings.filterwarnings("ignore")
 dataset = Dataset("Dataset/brest_cancer.csv")
 dataset = preprocessing(dataset)
 
-experiment = "MultiClassifier"
+experiment = "MultiClassifiers"
 
 RFdataset = copy.deepcopy(dataset)
 RFtrainer = RandomForestTrainer('diagnosis', ['diagnosis'], RFdataset)
@@ -37,4 +37,4 @@ trainAndLog(
 createMD("KNN Classifier", 1)
 createMD("KNN Classifier", 3)
 createMD("Random forest with kMeans", 15)
-createMD("Random Forest Classifier", 4)
+createMD("Random Forest Classifier", 3)

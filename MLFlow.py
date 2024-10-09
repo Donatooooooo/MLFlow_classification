@@ -72,7 +72,7 @@ def fetchInfo(modelName, version):
     runID = None
     mlmodel = None
     for item in model_versions:
-        if item.version == version:
+        if int(item.version) == version:
             runID = item.run_id
             mlmodel = item.name
             break

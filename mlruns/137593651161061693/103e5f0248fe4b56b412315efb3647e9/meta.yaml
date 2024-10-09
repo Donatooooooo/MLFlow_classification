@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/137593651161061693/103e5f0248fe4b56b412315efb3647e9/artifacts
+end_time: 1728465038305
+entry_point_name: ''
+experiment_id: '137593651161061693'
+lifecycle_stage: active
+run_id: 103e5f0248fe4b56b412315efb3647e9
+run_name: charming-wasp-377
+run_uuid: 103e5f0248fe4b56b412315efb3647e9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728465027073
+status: 3
+tags: []
+user_id: donat
