@@ -56,9 +56,10 @@ def trainAndLog(dataset : Dataset, trainer, experimentName, datasetName, modelNa
 
 #--------------------------------------------------------------------------------------------------------
 from mlflow.tracking import MlflowClient
-from Utils.utility import convertTime, extractInfoTags, extratDatasetName, organize
+from jinja2 import Environment, FileSystemLoader
+from Utils.utility import convertTime, extractInfoTags, extratDatasetName
 
-def fetchInfo(modelName, version):
+def fetchData(modelName, version):
     """
     Rintraccia le informazioni riguardante un modello attraverso il suo nome e la specifica versione
     memorizzata in MLflow Model Registry. Ottenuta la run corrispondente, rintraccia le informazioni. 
@@ -82,57 +83,51 @@ def fetchInfo(modelName, version):
 
     # attraverso la run, estrapola le informazioni
     run = client.get_run(runID)
-    
-    params = run.data.params
-    metrics = run.data.metrics
-    userID = run.info.user_id
+
     py, lib, libv = extractInfoTags(run.data.tags)
     datasetName = extratDatasetName(run.inputs.dataset_inputs)
     startTime = convertTime(run.info.start_time)
     endTime = convertTime(run.info.end_time)
-    
-    return [mlmodel, version, userID, lib, libv, py, 
-                datasetName, params, startTime, endTime, metrics]
 
+    data = {
+        "modelName": mlmodel,
+        "version": version,
+        "author": run.info.user_id,
+        "modelType": mlmodel,
+        "library": lib,
+        "libraryVersion": libv,
+        "pythonVersion": py,
+        "datasetName": datasetName,
+        "parameters": run.data.params,
+        "startTime": startTime,
+        "endTime": endTime,
+        "evaluations": run.data.metrics 
+    }
 
-def createMD(modelName, version):
+    return data
+
+def ModelCard(modelName, version):
     """
-    Crea un file markdown con le informazioni rintracciate.   
+    Crea una Model Card del modello instanziando un template 
+    predefinito attraverso le informazioni rintracciate.   
     """
     
     try:
-        info = fetchInfo(modelName, version)
+        data = fetchData(modelName, version)
     except Exception as e:
         print(e)
         return
 
-    title = f"# {info[0]} - v{info[1]}\n"
+    environment = Environment(loader = FileSystemLoader("src/Template"))
+    modelcard_template = environment.get_template("modelCard_template.md")
+    instance = modelcard_template.render(data)
 
-    general_info = (
-        f"## General Information \n"
-        f"- Developed by: {info[2]}\n"
-        f"- Model Type: {info[0]}\n"
-        f"- {info[3]}: {info[4]}\n"
-        f"- Python Version: {info[5]}\n"
-    )
-
-    params = organize("Parameters:", info[7])
-
-    training_info = (
-        f"## Training Details\n"
-        f"- Dataset: {info[6]}\n"
-        f"- {params}\n"
-        f"- Training started at: {info[8]}\n"
-        f"- Training ended at: {info[9]}\n"
-    )
-    
-    eval_info = organize("## Evaluation", info[10])
-    
-    part = info[0].replace(" ", "")
-    fname = f"{part}_v{info[1]}.md"
+    part = data.get("modelName").replace(" ", "")
+    fname = f"{part}_v{data.get("version")}.md"
     path = f"ModelCards/{fname}"
+
     with open(path, 'w') as file:
-        file.write(f"{title}{general_info}{training_info}{eval_info}")
+        file.write(instance)
 
     print(f"{fname} saved")
     return None
