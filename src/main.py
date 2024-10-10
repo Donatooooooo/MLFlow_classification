@@ -1,40 +1,40 @@
 from Dataset.dataset import Dataset
 from Classifiers.randomForest import RandomForestTrainer
 from Classifiers.knn import KNNTrainer
-from MLFlow import trainAndLog, createMD
+from MLFlow import trainAndLog, ModelCard
 from Utils.utility import preprocessing
 import warnings, copy
 warnings.filterwarnings("ignore")
 
 
-dataset = Dataset("src/Dataset/brest_cancer.csv")
-dataset = preprocessing(dataset)
+# dataset = Dataset("src/Dataset/brest_cancer.csv")
+# dataset = preprocessing(dataset)
 
-experiment = "MultiClassifiers"
+# experiment = "MultiClassifiers"
 
-RFdataset = copy.deepcopy(dataset)
-RFtrainer = RandomForestTrainer('diagnosis', ['diagnosis'], RFdataset)
-trainAndLog(
-    dataset = dataset,
-    trainer = RFtrainer,
-    experimentName = experiment,
-    datasetName = "brest_cancer.csv",
-    modelName = "Random Forest Classifier",
-    tags = {"Training Info": "testing with kMeans"}
-)
+# RFdataset = copy.deepcopy(dataset)
+# RFtrainer = RandomForestTrainer('diagnosis', ['diagnosis'], RFdataset)
+# trainAndLog(
+#     dataset = dataset,
+#     trainer = RFtrainer,
+#     experimentName = experiment,
+#     datasetName = "brest_cancer.csv",
+#     modelName = "Random Forest Classifier",
+#     tags = {"Training Info": "testing with kMeans"}
+# )
 
-KNNdataset = copy.deepcopy(dataset)
-KNNtrainer = KNNTrainer('diagnosis', ['diagnosis'], KNNdataset)
-trainAndLog(
-    dataset = dataset,
-    trainer = KNNtrainer,
-    experimentName = experiment,
-    datasetName = "brest_cancer.csv",
-    modelName = "KNN Classifier",
-    tags = {"Training Info": "testing with kMeans"}
-)
+# KNNdataset = copy.deepcopy(dataset)
+# KNNtrainer = KNNTrainer('diagnosis', ['diagnosis'], KNNdataset)
+# trainAndLog(
+#     dataset = dataset,
+#     trainer = KNNtrainer,
+#     experimentName = experiment,
+#     datasetName = "brest_cancer.csv",
+#     modelName = "KNN Classifier",
+#     tags = {"Training Info": "testing with kMeans"}
+# )
 
-createMD("KNN Classifier", 1)
-createMD("KNN Classifier", 3)
-createMD("Random forest with kMeans", 15)
-createMD("Random Forest Classifier", 3)
+ModelCard("KNN Classifier", 1)
+ModelCard("KNN Classifier", 3)
+ModelCard("Random forest with kMeans", 15)
+ModelCard("Random Forest Classifier", 3)
