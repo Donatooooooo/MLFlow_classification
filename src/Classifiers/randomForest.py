@@ -1,13 +1,13 @@
 from sklearn.model_selection import StratifiedKFold, train_test_split, GridSearchCV
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, make_scorer
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
 from os import path
 import sys, json
 
 sys.stdout.reconfigure(encoding='utf-8')
 sys.stderr.reconfigure(encoding='utf-8')
 
-class KNNTrainer:
+class RandomForestTrainer:
     def __init__(self, target_column, drop_columns, dataset):
         self.dataset = dataset
         self.target_column = target_column
@@ -43,14 +43,16 @@ class KNNTrainer:
         self.evaluateModel(self.model, X_test, y_test)
 
     def findBestParams(self):
-        name = "KNNClassifier"
-        self.model = KNeighborsClassifier()
+        name = "RandomForestClassifier"
+        self.model = RandomForestClassifier(random_state=42)
         param_grid = {
-            'n_neighbors': [3, 5, 7],
-            'weights': ['uniform', 'distance'],
-            'algorithm': ['auto', 'kd_tree', 'brute'],
-            'metric': ['euclidean', 'chebyshev'],
+            'n_estimators': [50, 100],
+            'criterion': ['gini', 'entropy'],
+            'max_depth': [None, 10, 20],
+            'min_samples_split': [2, 5, 10],
+            'min_samples_leaf': [1, 2, 4]
         }
+        
         best_params = self.loadBestParams(name)
         if best_params:
             print(f'Using saved best parameters for {name}:', best_params)
@@ -71,11 +73,11 @@ class KNNTrainer:
         return None
     
     def saveBestParams(self, best_params, name):
-        with open('Evaluation/best_params_' + name + '.json', 'w') as file:
+        with open('src/Utils/best_params_' + name + '.json', 'w') as file:
             json.dump(best_params, file)
 
     def loadBestParams(self, name):
-        filepath = 'Evaluation/best_params_' + name + '.json'
+        filepath = 'src/Utils/best_params_' + name + '.json'
         if path.exists(filepath):
             with open(filepath, 'r') as file:
                 return json.load(file)
