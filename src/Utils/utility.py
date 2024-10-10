@@ -51,9 +51,3 @@ def inferModel(dataset : Dataset, modelInfo, X_test, y_test):
     result["actual_class"] = y_test
     result["predicted_class"] = predictions
     result.sample(100).to_csv('src/Utils/predictions.csv', index=False)
-
-def organize(text, info):
-    string = f"{text}\n"
-    for key, value in info.items():
-        string += (f"   - `{key}` {value}\n")
-    return string
