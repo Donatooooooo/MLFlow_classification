@@ -35,14 +35,15 @@ jobs:
           fi
 
       - name: test pass
+        id: test_pass
         run: |
           if [ -f src/Data/name_version.md ]; then
             CONTENT=$(cat src/Data/name_version.md)
             echo "File content: $CONTENT"
-            
-            # Esegui lo script Python e cattura il codice di uscita
+
             if python src/main.py "$(printf '%s' "$CONTENT")"; then
               echo "No exceptions"
+              CONTROL=true
             else
               COMMENT="$CONTENT: No model in Model Registry"
               PR_NUMBER=${{ github.event.pull_request.number }}
@@ -52,13 +53,17 @@ jobs:
                 -H "Accept: application/vnd.github.v3+json" \
                 https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments \
                 -d "{\"body\":\"$COMMENT\"}"
+                CONTROL=false
             fi
           else
             echo "File src/Data/name_version.md not found!"
             exit 1
           fi
 
+          echo "::set-output name=control::$CONTROL"
+
       - name: Commit and push Model Card
+        if: steps.test_pass.outputs.control == 'true'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
