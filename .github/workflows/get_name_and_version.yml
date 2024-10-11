@@ -1,0 +1,50 @@
+name: Process name_version.md
+
+on:
+  pull_request:
+    paths:
+      - 'src/Data/name_version.md'
+
+jobs:
+  process_file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12.7'
+
+      - name: Install dependencies
+        run: |
+          pip install mlflow
+          pip install jinja2
+
+      - name: Print current working directory
+        run: pwd
+
+      - name: Read info.md and pass to main.py
+        run: |
+          if [ -f src/Data/name_version.md ]; then
+            CONTENT=$(cat src/Data/name_version.md)
+            echo "File content: $CONTENT"
+            #echo "$CONTENT" > input.txt  # Scrive il contenuto in un file temporaneo
+            python src/main.py "$(printf '%s' "$CONTENT")" 
+          else
+            echo "File src/Data/name_version.md not found!"
+            exit 1
+          fi
+
+      - name: Commit and push Model Card
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add ModelCards
+          git commit -m "Updated Model Card"
+          git pull --rebase origin ${{ github.head_ref }}
+          git push origin HEAD:${{ github.head_ref }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
