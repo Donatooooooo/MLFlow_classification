@@ -32,7 +32,7 @@ jobs:
             CONTENT=$(cat src/Info/name_version.md)
             echo "File content: $CONTENT"
             #echo "$CONTENT" > input.txt  # Scrive il contenuto in un file temporaneo
-            python src/main.py "$(printf '%s' "$CONTENT")"  # Passa il file come argomento a main.py
+            python src/main.py "$(printf '%s' "$CONTENT")" 
           else
             echo "File src/Info/name_version.md not found!"
             exit 1
@@ -42,8 +42,8 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add .
-          git commit -m "created Model Card" || echo "No changes to commit"
-          git push
+          git add ModelCards
+          git commit -m "Updated Model Card"
+          git push origin HEAD:main  # Specifica il ramo su cui fare push, ad esempio 'main'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
