@@ -44,6 +44,7 @@ jobs:
           git config --local user.name "GitHub Action"
           git add ModelCards
           git commit -m "Updated Model Card"
-          git push origin HEAD:main  # Specifica il ramo su cui fare push, ad esempio 'main'
+          git pull --rebase origin ${{ github.head_ref }}
+          git push origin HEAD:${{ github.head_ref }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
