@@ -73,11 +73,11 @@ class RandomForestTrainer:
         return None
     
     def saveBestParams(self, best_params, name):
-        with open('Evaluation/best_params_' + name + '.json', 'w') as file:
+        with open('ModelTracker/Utils/best_params/best_params_' + name + '.json', 'w') as file:
             json.dump(best_params, file)
 
     def loadBestParams(self, name):
-        filepath = 'Evaluation/best_params_' + name + '.json'
+        filepath = 'ModelTracker//best_params/best_params_' + name + '.json'
         if path.exists(filepath):
             with open(filepath, 'r') as file:
                 return json.load(file)
