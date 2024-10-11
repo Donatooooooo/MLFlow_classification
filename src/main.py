@@ -34,7 +34,8 @@ if False:
         tags = {"Training Info": "testing with kMeans"}
     )
 
-if False:
+n = False
+if n:
     ModelCard("KNN Classifier", 1)
     ModelCard("KNN Classifier", 3)
     ModelCard("Random forest with kMeans", 15)
