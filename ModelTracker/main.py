@@ -1,10 +1,9 @@
 from Dataset.dataset import Dataset
 from Classifiers.randomForest import RandomForestTrainer
 from Classifiers.knn import KNNTrainer
-from MLFlow import trainAndLog, createMD
+from MLFlowTracker import trainAndLog
 from Utils.utility import preprocessing
-import warnings, copy
-warnings.filterwarnings("ignore")
+import copy
 
 
 dataset = Dataset("Dataset/brest_cancer.csv")
@@ -33,8 +32,3 @@ trainAndLog(
     modelName = "KNN Classifier",
     tags = {"Training Info": "testing with kMeans"}
 )
-
-createMD("KNN Classifier", 1)
-createMD("KNN Classifier", 3)
-createMD("Random forest with kMeans", 15)
-createMD("Random Forest Classifier", 3)
