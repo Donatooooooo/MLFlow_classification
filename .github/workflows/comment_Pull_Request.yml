@@ -8,7 +8,11 @@ jobs:
   echo_comment:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - uses: nwtgck/actions-comment-run@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          allowed-associations: '["OWNER"]'
       - name: Print Comment
         run: |
           echo "Comment Body: ${{ github.event.comment.body }}"
-
