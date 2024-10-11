@@ -28,8 +28,8 @@ jobs:
           if [ -f src/Info/name_version.md ]; then
             CONTENT=$(cat src/Info/name_version.md)
             echo "File content: $CONTENT"
-            echo "$CONTENT" > input.txt  # Scrive il contenuto in un file temporaneo
-            python src/main.py input.txt  # Passa il file come argomento a main.py
+            #echo "$CONTENT" > input.txt  # Scrive il contenuto in un file temporaneo
+            python src/main.py $CONTENT  # Passa il file come argomento a main.py
           else
             echo "File src/Info/name_version.md not found!"
             exit 1
