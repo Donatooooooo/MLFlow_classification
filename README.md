@@ -53,21 +53,21 @@ L'addestramento del modello avviene all'interno di un 'run' di MLFlow. Un 'run' 
 ### Tracking
 Come già detto, MLFlow tracking è organizzato attorno al concetto di 'run'. Attraverso il comando 'mlflow.start_run()' tutte le operazioni di logging vengono associate al run corrente, permettendo di distinguere i diversi esperimenti. Inoltre, ogni volta che viene avviato un run, MLflow assegna un ID univoco al run stesso, facilitando la ripetizione degli esperimenti e il confronto attraverso l'interfaccia grafica messa a disposizione. Va specificato che, attraverso MLFlow Tracking, le informazioni tracciate possono essere salvate in locale o su un server remoto.
 
-![experiments](/Evaluation/img/experiments.png)
+![experiments](/ModelTracker/Utils/img/experiments.png)
 
 In ogni esperimento vengono salvate le metriche di valutazione, gli iperparametri scelti tramite GridSearch e informazioni legate al modello, allo stato e al dataset utilizzato oltre che informazioni di carattere più generale. 
 
-![sample](/Evaluation/img/sample.png)
+![sample](/ModelTracker/Utils/img/sample.png)
 
 Gli artifacts sono file e dati generati o utilizzati durante il ciclo di vita di un esperimento di machine learning. Questi possono includere i modelli addestrati, le configurazioni e i dati di input/output. Gli artifacts sono fondamentali per tracciare e riprodurre esperimenti, poiché contengono informazioni cruciali per comprendere come è stato addestrato e utilizzato un modello. Alcuni artifact vengono generati automaticamente da MLFLow durante il tracciamento del modello. Per testare il tracciamento manuale degli artifacts è stato sfruttato il modello caricato per calcolare delle predizioni e salvarle nel file predictions.csv che viene loggato al termine delle operazioni. 
 
-![artifacts](/Evaluation/img/artifacts.png)
+![artifacts](/ModelTracker/Utils/img/artifacts.png)
 
 ### Model Registry
 
 Tutti i modelli, con le diverse versioni, tag e altre informazioni utili, vengono salvate in un archivio centralizzato: il Model Registry.
 
-![registry](/Evaluation/img/registry.png)
+![registry](/ModelTracker/Utils/img/registry.png)
 
 ## Test 2: Creazione di una Model Card attraverso le informazioni tracciate
 Come già evidenziato, negli ultimi anni si è registrata un'espansione significativa nell'impiego di modelli di Machine Learning, anche in contesti critici (come ad esempio la medicina), dove le decisioni possono avere conseguenze di grande rilevanza. In un tale contesto, la documentazione assume un ruolo cruciale per poter comprendere come vengono prese le decisioni e quali dati influenzano i processi decisionali. Di conseguenza, è fondamentale che gli sviluppatori si impegnino a fornire una documentazione chiara sui loro modelli.
