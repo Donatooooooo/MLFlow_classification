@@ -29,3 +29,13 @@ jobs:
             echo "File src/Info/name_version.md not found!"
             exit 1
           fi
+
+      - name: Commit and push Model Card
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "created Model Card" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
