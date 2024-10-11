@@ -1,22 +1,13 @@
-name: Comment Pull Request
+name: Comment on Pull Request
 
 on:
   issue_comment:
     types: [created, edited]
 
 jobs:
-  echo_comment:
+  print_comment:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Run Command on Comment
-        uses: nwtgck/actions-comment-run@v3
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          allowed-associations: '["OWNER"]'
-
-      - name: Print Comment
-        run: |
-          echo "Comment Body: ${{ github.event.comment.body }}"
+      - name: Print comment content
+        run: echo "Comment: ${{ github.event.comment.body }}"
