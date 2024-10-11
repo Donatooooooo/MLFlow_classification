@@ -16,7 +16,6 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           allowed-associations: '["OWNER"]'
-          command: 'echo "Hello from the comment!"'  # Esempio di comando da eseguire
 
       - name: Print Comment
         run: |
