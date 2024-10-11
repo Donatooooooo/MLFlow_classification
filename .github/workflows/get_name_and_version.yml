@@ -18,6 +18,11 @@ jobs:
         with:
           python-version: '3.12.7'
 
+      - name: Install dependencies
+        run: |
+          pip install mlflow
+          pip install jinja2
+
       - name: Read info.md and pass to main.py
         run: |
           if [ -f src/Info/name_version.md ]; then
