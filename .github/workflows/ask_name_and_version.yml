@@ -1,10 +1,10 @@
-name: Post Comment
+name: Ask name and version
 
 on:
   pull_request:
 
 permissions:
-  pull-requests: write  # Permessi per scrivere commenti sulle PR
+  pull-requests: write
 
 jobs:
   generate-comment:
@@ -15,9 +15,8 @@ jobs:
 
       - name: Generate comment
         run: |
-          COMMENT="di quale modello si vuole generare la model card?"
+          COMMENT="Specificare il nome e la versione del modello di cui si vuole generare la Model Card"
           PR_NUMBER=${{ github.event.pull_request.number }}
-          echo "PR Number: $PR_NUMBER"  # Verifica il numero della PR per debug
           curl -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
