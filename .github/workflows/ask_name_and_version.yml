@@ -24,7 +24,8 @@ jobs:
           EXISTING_COMMENTS=$(curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" $COMMENTS_URL)
 
           # Check if the comment already exists
-          if echo "$EXISTING_COMMENTS" | grep -q "$COMMENT"; then
+          if echo "$EXISTING_COMMENTS" | grep -q "\"body\": \"$COMMENT\""; then
+            echo "Comment already exists"
             exit 0
           fi
 
