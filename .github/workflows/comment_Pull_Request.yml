@@ -22,9 +22,10 @@ jobs:
       - name: Extract comment text
         id: extract_comment
         run: |
-          echo "::set-output name=comment::$(echo '${{ github.event.comment.body }}')"
+          echo "${{ github.event.comment.body }}" > comment.txt
+          echo "comment=$(<comment.txt)" >> $GITHUB_ENV
 
       # Run Python script with the extracted comment
       - name: Run Python script
         run: |
-          python src/main.py "${{ steps.extract_comment.outputs.comment }}"
+          python src/main.py "$comment"
