@@ -1,4 +1,4 @@
-name: Comment on Pull Request
+name: pr comment
 
 on:
   issue_comment:
