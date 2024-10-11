@@ -50,8 +50,21 @@ def extratDatasetName(data):
 #     result["predicted_class"] = predictions
 #     result.sample(100).to_csv('src/Utils/predictions.csv', index=False)
 
+
+import os
+
 def getPath(data):
+    # Ottieni il nome del modello e la versione
     part = data.get("modelName").replace(" ", "")
-    fname = f"{part}_v{data.get("version")}.md"
-    path = f"ModelCards/{fname}"
+    fname = f"{part}_v{data.get('version')}.md"
+
+    # Ottieni il percorso assoluto della root del progetto
+    root_dir = os.path.dirname(os.path.abspath(__file__))  # Directory in cui si trova questo script
+
+    # Combina il percorso della root con la cartella 'ModelCards'
+    model_cards_dir = os.path.join(root_dir, '..', 'ModelCards')  # Vai alla root e poi nella cartella ModelCards
+    
+    # Crea il percorso completo del file
+    path = os.path.join(model_cards_dir, fname)
+
     return path
