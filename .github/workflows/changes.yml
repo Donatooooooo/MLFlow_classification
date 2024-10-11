@@ -3,6 +3,9 @@ name: Post Comment
 on:
   pull_request:
 
+permissions:
+  pull-requests: write
+
 jobs:
   generate-comment:
     runs-on: ubuntu-latest
@@ -14,6 +17,7 @@ jobs:
         run: |
           COMMENT="di quale modello si vuole generare la model card?"
           PR_NUMBER=${{ github.event.pull_request.number }}
+          echo "PR Number: $PR_NUMBER"  # Aggiungi questa riga per il debug
           curl -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
