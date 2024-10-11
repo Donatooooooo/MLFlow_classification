@@ -1,4 +1,4 @@
-name: comment Pull Request
+name: Comment Pull Request
 
 on:
   issue_comment:
@@ -8,11 +8,16 @@ jobs:
   echo_comment:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: nwtgck/actions-comment-run@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Command on Comment
+        uses: nwtgck/actions-comment-run@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           allowed-associations: '["OWNER"]'
+          command: 'echo "Hello from the comment!"'  # Esempio di comando da eseguire
+
       - name: Print Comment
         run: |
           echo "Comment Body: ${{ github.event.comment.body }}"
