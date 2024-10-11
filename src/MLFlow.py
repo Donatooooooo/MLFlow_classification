@@ -122,6 +122,13 @@ def ModelCard(modelName, version):
     modelcard_template = environment.get_template("modelCard_template.md")
     instance = modelcard_template.render(data)
 
+    filename = getPath(data)
+
+    import os
+    # Assicurati che la directory esista, creandola se necessario
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
+
+
     with open(getPath(data), 'w') as file:
         file.write(instance)
 
