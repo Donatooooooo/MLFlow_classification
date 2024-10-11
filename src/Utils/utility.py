@@ -61,10 +61,10 @@ def getPath(data):
     fname = f"{part}_v{data.get('version')}.md"
     
     # Ottieni il percorso assoluto della root del progetto
-    root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Un livello sopra rispetto a src/
+    root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # Va un livello sopra a src/
     
     # Combina il percorso della root con la cartella 'ModelCards'
-    model_cards_dir = os.path.join(root_dir, 'ModelCards')  # Cartella ModelCards nella root del progetto
+    model_cards_dir = os.path.join(root_dir, 'ModelCards')  # Percorso completo per ModelCards
     
     # Crea il percorso completo del file
     path = os.path.join(model_cards_dir, fname)
