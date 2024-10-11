@@ -5,7 +5,17 @@ on:
     types: [created, edited]
 
 jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug Info
+        run: |
+          echo "Event: ${{ toJson(github.event) }}"
+          echo "Comment Body: ${{ github.event.comment.body }}"
+          echo "Pull Request: ${{ toJson(github.event.issue.pull_request) }}"
+
   process_comment:
+    if: ${{ github.event.issue.pull_request }}  # Assicurati che sia una pull request
     runs-on: ubuntu-latest
     steps:
       # Checkout the repository
@@ -23,9 +33,9 @@ jobs:
         id: extract_comment
         run: |
           echo "${{ github.event.comment.body }}" > comment.txt
-          echo "comment=$(<comment.txt)" >> $GITHUB_ENV
+          echo "comment=$(<comment.txt)" >> $GITHUB_ENV  # Imposta l'output come variabile di ambiente
 
       # Run Python script with the extracted comment
       - name: Run Python script
         run: |
-          python src/main.py "$comment"
+          python src/main.py "$comment"  # Usa la variabile di ambiente
