@@ -21,7 +21,7 @@ jobs:
       - name: Read info.md and pass to main.py
         run: |
           if [ -f src/info.md ]; then
-            CONTENT=$(cat src/info.md)
+            CONTENT=$(cat src/Info/name_version.md)
             echo "File content: $CONTENT"
             echo "$CONTENT" > input.txt  # Scrive il contenuto in un file temporaneo
             python src/main.py input.txt  # Passa il file come argomento a main.py
