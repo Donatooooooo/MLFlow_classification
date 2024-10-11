@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Debug Step
+        run: echo "Workflow has been triggered!"
+        
       - name: Print comment content
         run: |
           echo "Comment: ${{ github.event.comment.body }}"
