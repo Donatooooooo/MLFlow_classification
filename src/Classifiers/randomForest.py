@@ -73,11 +73,11 @@ class RandomForestTrainer:
         return None
     
     def saveBestParams(self, best_params, name):
-        with open('src/Utils/best_params_' + name + '.json', 'w') as file:
+        with open('src/Utils/best_params/best_params_' + name + '.json', 'w') as file:
             json.dump(best_params, file)
 
     def loadBestParams(self, name):
-        filepath = 'src/Utils/best_params_' + name + '.json'
+        filepath = 'src/Utils/best_params/best_params_' + name + '.json'
         if path.exists(filepath):
             with open(filepath, 'r') as file:
                 return json.load(file)
