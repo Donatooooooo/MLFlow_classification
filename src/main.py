@@ -44,7 +44,7 @@ import sys
 from MLFlow import ModelCard
 
 if __name__ == "__main__":
-    input = sys.argv[1]
+    input = "KNN Classifier 3"#sys.argv[1]
     
     print(input, "\n\n")
     parts = input.rsplit(' ', 1)
