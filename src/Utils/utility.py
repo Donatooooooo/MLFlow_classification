@@ -53,18 +53,21 @@ def extratDatasetName(data):
 
 import os
 
+import os
+
 def getPath(data):
     # Ottieni il nome del modello e la versione
     part = data.get("modelName").replace(" ", "")
     fname = f"{part}_v{data.get('version')}.md"
-
+    
     # Ottieni il percorso assoluto della root del progetto
-    root_dir = os.path.dirname(os.path.abspath(__file__))  # Directory in cui si trova questo script
-
+    root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Un livello sopra rispetto a src/
+    
     # Combina il percorso della root con la cartella 'ModelCards'
-    model_cards_dir = os.path.join(root_dir, '..', 'ModelCards')  # Vai alla root e poi nella cartella ModelCards
+    model_cards_dir = os.path.join(root_dir, 'ModelCards')  # Cartella ModelCards nella root del progetto
     
     # Crea il percorso completo del file
     path = os.path.join(model_cards_dir, fname)
-
+    
     return path
+
