@@ -17,9 +17,10 @@ jobs:
         run: |
           COMMENT="di quale modello si vuole generare la model card?"
           PR_NUMBER=${{ github.event.pull_request.number }}
-          echo "PR Number: $PR_NUMBER"  # Aggiungi questa riga per il debug
+          echo "PR Number: $PR_NUMBER"  # Verifica il numero della PR per debug
           curl -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments \
+            https://api.github.com/repos/${{ github.repository }}/pulls/$PR_NUMBER/comments \
             -d "{\"body\":\"$COMMENT\"}"
+
