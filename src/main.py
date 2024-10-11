@@ -46,4 +46,6 @@ from MLFlow import ModelCard
 if __name__ == "__main__":
     input = sys.argv[1]
     parts = input.rsplit(' ', 1)
+    
+    print("MAINTEST:", parts[0], parts[1])
     ModelCard(parts[0], int(parts[1]))
