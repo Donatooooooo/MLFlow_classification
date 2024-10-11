@@ -8,7 +8,7 @@ def trainAndLog(dataset : Dataset, trainer, experimentName, datasetName, modelNa
     Gestisce l'addestramento del modello all'interno di un run di MLFlow registrando informazioni,
     parametri di addestramento e metriche di valutazione.
     """
-    
+
     mlflow.set_tracking_uri(uri="http://127.0.0.1:5000")
     
     if not mlflow.get_experiment_by_name(experimentName):
@@ -57,14 +57,14 @@ def trainAndLog(dataset : Dataset, trainer, experimentName, datasetName, modelNa
 #--------------------------------------------------------------------------------------------------------
 from mlflow.tracking import MlflowClient
 from jinja2 import Environment, FileSystemLoader
-from Utils.utility import convertTime, extractInfoTags, extratDatasetName
+from Utils.utility import convertTime, extractInfoTags, extratDatasetName, getPath
 
 def fetchData(modelName, version):
     """
     Rintraccia le informazioni riguardante un modello attraverso il suo nome e la specifica versione
     memorizzata in MLflow Model Registry. Ottenuta la run corrispondente, rintraccia le informazioni. 
     """
-    
+
     # ricerca il modello in base al nome
     client = MlflowClient()
     model_versions = client.search_model_versions(f"name='{modelName}'")
@@ -111,23 +111,19 @@ def ModelCard(modelName, version):
     Crea una Model Card del modello instanziando un template 
     predefinito attraverso le informazioni rintracciate.   
     """
-    
+
     try:
         data = fetchData(modelName, version)
     except Exception as e:
         print(e)
         return
 
-    environment = Environment(loader = FileSystemLoader("src/Template"))
+    environment = Environment(loader = FileSystemLoader("src/Templates"))
     modelcard_template = environment.get_template("modelCard_template.md")
     instance = modelcard_template.render(data)
 
-    part = data.get("modelName").replace(" ", "")
-    fname = f"{part}_v{data.get("version")}.md"
-    path = f"ModelCards/{fname}"
-
-    with open(path, 'w') as file:
+    with open(getPath(data), 'w') as file:
         file.write(instance)
 
-    print(f"{fname} saved")
     return None
+

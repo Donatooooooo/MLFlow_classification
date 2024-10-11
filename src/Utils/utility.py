@@ -51,3 +51,9 @@ def inferModel(dataset : Dataset, modelInfo, X_test, y_test):
     result["actual_class"] = y_test
     result["predicted_class"] = predictions
     result.sample(100).to_csv('src/Utils/predictions.csv', index=False)
+
+def getPath(data):
+    part = data.get("modelName").replace(" ", "")
+    fname = f"{part}_v{data.get("version")}.md"
+    path = f"ModelCards/{fname}"
+    return path

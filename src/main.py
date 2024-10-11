@@ -1,40 +1,41 @@
 from Dataset.dataset import Dataset
-from Classifiers.randomForest import RandomForestTrainer
-from Classifiers.knn import KNNTrainer
+from Models.randomForest import RandomForestTrainer
+from Models.knn import KNNTrainer
 from MLFlow import trainAndLog, ModelCard
 from Utils.utility import preprocessing
-import warnings, copy
-warnings.filterwarnings("ignore")
+import copy
 
 
-# dataset = Dataset("src/Dataset/brest_cancer.csv")
-# dataset = preprocessing(dataset)
+if False:
+    dataset = Dataset("src/Dataset/brest_cancer.csv")
+    dataset = preprocessing(dataset)
 
-# experiment = "MultiClassifiers"
+    experiment = "MultiClassifiers"
 
-# RFdataset = copy.deepcopy(dataset)
-# RFtrainer = RandomForestTrainer('diagnosis', ['diagnosis'], RFdataset)
-# trainAndLog(
-#     dataset = dataset,
-#     trainer = RFtrainer,
-#     experimentName = experiment,
-#     datasetName = "brest_cancer.csv",
-#     modelName = "Random Forest Classifier",
-#     tags = {"Training Info": "testing with kMeans"}
-# )
+    RFdataset = copy.deepcopy(dataset)
+    RFtrainer = RandomForestTrainer('diagnosis', ['diagnosis'], RFdataset)
+    trainAndLog(
+        dataset = dataset,
+        trainer = RFtrainer,
+        experimentName = experiment,
+        datasetName = "brest_cancer.csv",
+        modelName = "Random Forest Classifier",
+        tags = {"Training Info": "testing with kMeans"}
+    )
 
-# KNNdataset = copy.deepcopy(dataset)
-# KNNtrainer = KNNTrainer('diagnosis', ['diagnosis'], KNNdataset)
-# trainAndLog(
-#     dataset = dataset,
-#     trainer = KNNtrainer,
-#     experimentName = experiment,
-#     datasetName = "brest_cancer.csv",
-#     modelName = "KNN Classifier",
-#     tags = {"Training Info": "testing with kMeans"}
-# )
+    KNNdataset = copy.deepcopy(dataset)
+    KNNtrainer = KNNTrainer('diagnosis', ['diagnosis'], KNNdataset)
+    trainAndLog(
+        dataset = dataset,
+        trainer = KNNtrainer,
+        experimentName = experiment,
+        datasetName = "brest_cancer.csv",
+        modelName = "KNN Classifier",
+        tags = {"Training Info": "testing with kMeans"}
+    )
 
-ModelCard("KNN Classifier", 1)
-ModelCard("KNN Classifier", 3)
-ModelCard("Random forest with kMeans", 15)
-ModelCard("Random Forest Classifier", 3)
+if False:
+    ModelCard("KNN Classifier", 1)
+    ModelCard("KNN Classifier", 3)
+    ModelCard("Random forest with kMeans", 15)
+    ModelCard("Random Forest Classifier", 3)
