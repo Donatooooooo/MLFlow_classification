@@ -1,4 +1,4 @@
-name: Process info.md
+name: Process name_version.md
 
 on:
   pull_request:
@@ -20,12 +20,12 @@ jobs:
 
       - name: Read info.md and pass to main.py
         run: |
-          if [ -f src/info.md ]; then
+          if [ -f src/Info/name_version.md ]; then
             CONTENT=$(cat src/Info/name_version.md)
             echo "File content: $CONTENT"
             echo "$CONTENT" > input.txt  # Scrive il contenuto in un file temporaneo
             python src/main.py input.txt  # Passa il file come argomento a main.py
           else
-            echo "File src/info.md not found!"
+            echo "File src/Info/name_version.md not found!"
             exit 1
           fi
