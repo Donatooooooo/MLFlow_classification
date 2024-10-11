@@ -5,13 +5,13 @@ on:
     types: [created]
 
 jobs:
-  print_comment:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Debug Step
-        run: echo "Workflow has been triggered!"
-        
-      - name: Print comment content
-        run: |
-          echo "Comment: ${{ github.event.comment.body }}"
+    pr_commented:
+        # This job only runs for pull request comments
+        name: PR comment
+        if: ${{ github.event.issue.pull_request }}
+        runs-on: ubuntu-latest
+        steps:
+          - run: |
+              echo A comment on PR $NUMBER
+            env:
+              NUMBER: ${{ github.event.issue.number }}
