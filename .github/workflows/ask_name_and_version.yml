@@ -13,6 +13,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Check comment
+        id: check_comment
+        run: |
+          COMMENT="Specificare il nome e la versione del modello di cui si vuole generare la Model Card"
+          PR_NUMBER=${{ github.event.pull_request.number }}
+
+          # Fetch existing comments
+          COMMENTS_URL="https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments"
+          EXISTING_COMMENTS=$(curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" $COMMENTS_URL)
+
+          # Check if the comment already exists
+          if echo "$EXISTING_COMMENTS" | grep -q "$COMMENT"; then
+            exit 0
+          fi
+
       - name: Generate comment
         run: |
           COMMENT="Specificare il nome e la versione del modello di cui si vuole generare la Model Card"
