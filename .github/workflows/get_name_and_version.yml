@@ -1,0 +1,31 @@
+name: Process info.md
+
+on:
+  pull_request:
+    paths:
+      - 'src/Info/name_version.md'
+
+jobs:
+  process_file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12.7'
+
+      - name: Read info.md and pass to main.py
+        run: |
+          if [ -f src/info.md ]; then
+            CONTENT=$(cat src/info.md)
+            echo "File content: $CONTENT"
+            echo "$CONTENT" > input.txt  # Scrive il contenuto in un file temporaneo
+            python src/main.py input.txt  # Passa il file come argomento a main.py
+          else
+            echo "File src/info.md not found!"
+            exit 1
+          fi
