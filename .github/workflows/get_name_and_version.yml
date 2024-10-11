@@ -67,7 +67,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add ModelCards
+          git add .
           git commit -m "Updated Model Card"
           git pull --rebase origin ${{ github.head_ref }}
           git push origin HEAD:${{ github.head_ref }}
