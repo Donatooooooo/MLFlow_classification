@@ -63,6 +63,7 @@ jobs:
           else
             echo "File does not exist, proceeding push."
             CONTROL=false
+          fi
           
           echo "::set-output name=file_exists::$CONTROL"
 
