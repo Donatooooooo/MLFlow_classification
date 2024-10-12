@@ -48,10 +48,26 @@ jobs:
           CONTENT=$(cat src/Data/name_version.md)
           echo "File content: $CONTENT"
           echo "passing content to main.py"
-          python src/main.py "$(printf '%s' "$CONTENT")" 
+          python src/main.py "$(printf '%s' "$CONTENT")"
+
+      - name: Check if file already exists
+        if: steps.check.outputs.file_exists == 'true'
+        id: file_check
+        run: |
+          CONTENT=$(cat src/Data/name_version.md)
+          FILE_NAME=$(python src/main.py "$(printf '%s' "$CONTENT")")
+          if [ -f "ModelCards/$FILE_NAME" ]; then
+            echo "File already exists, skipping push."
+            rm -f "ModelCards/$FILE_NAME"
+            CONTROL=true
+          else
+            echo "File does not exist, proceeding push."
+            CONTROL=false
+          
+          echo "::set-output name=file_exists::$CONTROL"
 
       - name: Commit and push Model Card
-        if: steps.check.outputs.file_exists == 'true'
+        if: steps.file_check.outputs.file_exists == false
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
