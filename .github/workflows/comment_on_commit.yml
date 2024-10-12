@@ -20,22 +20,23 @@ jobs:
           PR_NUMBER=${{ github.event.pull_request.number }}
 
           COMMENTS_URL="https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments"
-          EXISTING_COMMENTS=$(curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" $COMMENTS_URL)
+          EXISTING_COMMENTS=$(curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -s $COMMENTS_URL)
 
-          CONTROL=true
+          # Controlla se il commento esiste già
           if echo "$EXISTING_COMMENTS" | grep -q "\"body\": \"$COMMENT\""; then
             echo "Comment already exists"
-            CONTROL=false
+            echo "comment_exists=false" >> $GITHUB_ENV
+          else
+            echo "Comment does not exist"
+            echo "comment_exists=true" >> $GITHUB_ENV
           fi
 
-          echo "::set-output name=comment_exists::$CONTROL"
-        
-      - name: post comment
-        if: steps.check_comment.outputs.comment_exists == 'true' && contains(${{ github.event.head_commit.message }}, 'Model Card generated')
+      - name: Post comment
+        if: env.comment_exists == 'true' && contains(github.event.head_commit.message, 'Model Card generated')
         run: |
           COMMENT="Integra la Model Card inserendo le informazioni nel file _parts.md, che si trova nella directory ModelCardGenerator/Data."
           PR_NUMBER=${{ github.event.pull_request.number }}
-          PR_NUMBER=${{ github.event.pull_request.number }}
+          
           curl -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
