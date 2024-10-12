@@ -13,6 +13,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Check if name_version.md exists and is not empty
+        run: |
+          if [ -f src/Data/name_version.md ]; then
+            CONTENT=$(cat src/Data/name_version.md)
+            if [ -z "$CONTENT" ]; then
+              echo "File src/Data/name_version.md is empty!"
+              exit 1
+            fi
+          else
+            echo "File src/Data/name_version.md not found!"
+            exit 1
+          fi
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -23,16 +36,12 @@ jobs:
           pip install mlflow
           pip install jinja2
 
-      - name: Read info.md and pass to main.py
-        run: |
-          if [ -f src/Data/name_version.md ]; then
-            CONTENT=$(cat src/Data/name_version.md)
-            echo "File content: $CONTENT"
-            python src/main.py "$(printf '%s' "$CONTENT")" 
-          else
-            echo "File src/Data/name_version.md not found!"
-            exit 1
-          fi
+      - name: Read name_version.md and pass to main.py
+        run: |     
+          CONTENT=$(cat src/Data/name_version.md)
+          echo "File content: $CONTENT"
+          echo "passing content to main.py"
+          python src/main.py "$(printf '%s' "$CONTENT")" 
 
       - name: Commit and push Model Card
         run: |

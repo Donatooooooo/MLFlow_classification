@@ -16,7 +16,7 @@ jobs:
       - name: Check comment
         id: check_comment
         run: |
-          COMMENT="Per creare la Model Card, è necessario specificare il nome e la versione del modello all'interno del file name_version.yml, che si trova nella cartella src/Data."
+          COMMENT="Per creare la Model Card è necessario specificare il nome e la versione del modello all'interno del file name_version.yml, che si trova nella directory src/Data."
           PR_NUMBER=${{ github.event.pull_request.number }}
 
           COMMENTS_URL="https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments"
@@ -26,6 +26,7 @@ jobs:
           if echo "$EXISTING_COMMENTS" | grep -q "\"body\": \"$COMMENT\""; then
             echo "Comment already exists"
             CONTROL=false
+            exit 1
           fi
 
           echo "::set-output name=comment_exists::$CONTROL"
@@ -33,7 +34,7 @@ jobs:
       - name: Generate comment
         if: steps.check_comment.outputs.comment_exists == 'true'
         run: |
-          COMMENT="Per creare la Model Card, è necessario specificare il nome e la versione del modello all'interno del file name_version.yml, che si trova nella cartella src/Data."
+          COMMENT="Per creare la Model Card è necessario specificare il nome e la versione del modello all'interno del file **name_version.yml**, che si trova nella directory **src/Data**."
           PR_NUMBER=${{ github.event.pull_request.number }}
           PR_NUMBER=${{ github.event.pull_request.number }}
           curl -X POST \
@@ -41,5 +42,22 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments \
             -d "{\"body\":\"$COMMENT\"}"
+
+      - name: Create md files file
+        run: |
+          mkdir -p src/Data
+          > src/Data/name_version.md
+          > src/Data/_parts.md
+
+      - name: Commit and push files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "created md files"
+          git pull --rebase origin ${{ github.head_ref }}
+          git push origin HEAD:${{ github.head_ref }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
