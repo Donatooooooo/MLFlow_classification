@@ -3,7 +3,7 @@ name: Process name_version.md
 on:
   pull_request:
     paths:
-      - 'src/Data/name_version.md'
+      - 'ModelCardGenerator/Data/name_version.md'
 
 jobs:
   process_file:
@@ -17,14 +17,14 @@ jobs:
         id: check
         run: |
           CONTROL=true
-          if [ -f src/Data/name_version.md ]; then
-            CONTENT=$(cat src/Data/name_version.md)
+          if [ -f ModelCardGenerator/Data/name_version.md ]; then
+            CONTENT=$(cat ModelCardGenerator/Data/name_version.md)
             if [ -z "$CONTENT" ]; then
-              echo "File src/Data/name_version.md is empty!"
+              echo "File ModelCardGenerator/Data/name_version.md is empty!"
               CONTROL=false
             fi
           else
-            echo "File src/Data/name_version.md not found!"
+            echo "File ModelCardGenerator/Data/name_version.md not found!"
             CONTROL=false
           fi
 
@@ -45,17 +45,17 @@ jobs:
       - name: Read name_version.md and pass to main.py
         if: steps.check.outputs.file_exists == 'true'
         run: |     
-          CONTENT=$(cat src/Data/name_version.md)
+          CONTENT=$(cat ModelCardGenerator/Data/name_version.md)
           echo "File content: $CONTENT"
           echo "passing content to main.py"
-          python src/main.py "$(printf '%s' "$CONTENT")"
+          python ModelCardGenerator/main.py "$(printf '%s' "$CONTENT")"
 
       - name: Check if file already exists
         if: steps.check.outputs.file_exists == 'true'
         id: file_check
         run: |
-          CONTENT=$(cat src/Data/name_version.md)
-          FILE_NAME=$(python src/main.py "$(printf '%s' "$CONTENT")")
+          CONTENT=$(cat ModelCardGenerator/Data/name_version.md)
+          FILE_NAME=$(python ModelCardGenerator/main.py "$(printf '%s' "$CONTENT")")
           if [ -f "ModelCards/$FILE_NAME" ]; then
             echo "File already exists, skipping push."
             rm -f "ModelCards/$FILE_NAME"
