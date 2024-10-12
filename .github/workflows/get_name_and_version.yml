@@ -48,14 +48,14 @@ jobs:
           CONTENT=$(cat ModelCardGenerator/Data/name_version.md)
           echo "File content: $CONTENT"
           echo "passing content to main.py"
-          python ModelCardGenerator/main.py "$(printf '%s' "$CONTENT")"
+          python ModelCardGenerator/src/main.py "$(printf '%s' "$CONTENT")"
 
       - name: Check if file already exists
         if: steps.check.outputs.file_exists == 'true'
         id: file_check
         run: |
           CONTENT=$(cat ModelCardGenerator/Data/name_version.md)
-          FILE_NAME=$(python ModelCardGenerator/main.py "$(printf '%s' "$CONTENT")")
+          FILE_NAME=$(python ModelCardGenerator/src/main.py "$(printf '%s' "$CONTENT")")
           if [ -f "ModelCards/$FILE_NAME" ]; then
             echo "File already exists, skipping push."
             rm -f "ModelCards/$FILE_NAME"
