@@ -1,7 +1,11 @@
 name: Comment on commit
 
 on:
-    pull_request:
+  pull_request:
+
+permissions:
+  pull-requests: write
+  contents: write
 
 jobs:
   comment:
