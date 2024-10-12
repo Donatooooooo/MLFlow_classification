@@ -73,8 +73,14 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          git commit -m "Model Card generated"
-          git pull --rebase origin ${{ github.head_ref }}
-          git push origin HEAD:${{ github.head_ref }}
+          
+          # Verifica se ci sono cambiamenti
+          if [ -n "$(git diff --cached)" ]; then
+            git commit -m "Model Card generated"
+            git pull --rebase origin ${{ github.head_ref }}
+            git push origin HEAD:${{ github.head_ref }}
+          else
+            echo "No changes to commit, skipping push."
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
