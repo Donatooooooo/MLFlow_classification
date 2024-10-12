@@ -13,33 +13,67 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Check if name_version.md exists and is not empty
+        id: check
+        run: |
+          CONTROL=true
+          if [ -f src/Data/name_version.md ]; then
+            CONTENT=$(cat src/Data/name_version.md)
+            if [ -z "$CONTENT" ]; then
+              echo "File src/Data/name_version.md is empty!"
+              CONTROL=false
+            fi
+          else
+            echo "File src/Data/name_version.md not found!"
+            CONTROL=false
+          fi
+
+          echo "::set-output name=file_exists::$CONTROL"
+
       - name: Set up Python
+        if: steps.check.outputs.file_exists == 'true'
         uses: actions/setup-python@v2
         with:
           python-version: '3.12.7'
 
       - name: Install dependencies
+        if: steps.check.outputs.file_exists == 'true'
         run: |
           pip install mlflow
           pip install jinja2
 
-      - name: Read info.md and pass to main.py
+      - name: Read name_version.md and pass to main.py
+        if: steps.check.outputs.file_exists == 'true'
+        run: |     
+          CONTENT=$(cat src/Data/name_version.md)
+          echo "File content: $CONTENT"
+          echo "passing content to main.py"
+          python src/main.py "$(printf '%s' "$CONTENT")"
+
+      - name: Check if file already exists
+        if: steps.check.outputs.file_exists == 'true'
+        id: file_check
         run: |
-          if [ -f src/Data/name_version.md ]; then
-            CONTENT=$(cat src/Data/name_version.md)
-            echo "File content: $CONTENT"
-            python src/main.py "$(printf '%s' "$CONTENT")" 
+          CONTENT=$(cat src/Data/name_version.md)
+          FILE_NAME=$(python src/main.py "$(printf '%s' "$CONTENT")")
+          if [ -f "ModelCards/$FILE_NAME" ]; then
+            echo "File already exists, skipping push."
+            rm -f "ModelCards/$FILE_NAME"
+            CONTROL=true
           else
-            echo "File src/Data/name_version.md not found!"
-            exit 1
+            echo "File does not exist, proceeding push."
+            CONTROL=false
           fi
+          
+          echo "::set-output name=file_exists::$CONTROL"
 
       - name: Commit and push Model Card
+        if: steps.file_check.outputs.file_exists == false
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          git commit -m "Updated Model Card"
+          git commit -m "Model Card generated"
           git pull --rebase origin ${{ github.head_ref }}
           git push origin HEAD:${{ github.head_ref }}
         env:
