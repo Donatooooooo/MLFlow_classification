@@ -43,15 +43,27 @@ jobs:
             https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments \
             -d "{\"body\":\"$COMMENT\"}"
 
+      - name: Check if files exist
+        if: steps.check_comment.outputs.comment_exists == 'true'
+        id: check_files
+        run: |
+          if [ -f "src/Data/name_version.md" ] && [ -f "src/Data/_parts.md" ]; then
+            Control=true
+          else
+            Control=false
+          fi
+
+          echo "::set-output name=file_exists::$CONTROL"
+
       - name: Create md files file
-        if: steps.check_comment.outputs.comment_exists == 'true'      
+        if: steps.check_files.outputs.file_exists == 'false'      
         run: |
           mkdir -p src/Data
           > src/Data/name_version.md
           > src/Data/_parts.md
 
       - name: Commit and push files
-        if: steps.check_comment.outputs.comment_exists == 'true'
+        if: steps.check_files.outputs.file_exists == 'false'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
