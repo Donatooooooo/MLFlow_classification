@@ -27,7 +27,6 @@ jobs:
           if echo "$EXISTING_COMMENTS" | grep -q "\"body\": \"$COMMENT\""; then
             echo "Comment already exists"
             CONTROL=false
-            exit 1
           fi
 
           echo "::set-output name=comment_exists::$CONTROL"
@@ -35,7 +34,7 @@ jobs:
       - name: Generate comment
         if: steps.check_comment.outputs.comment_exists == 'true'
         run: |
-          COMMENT="Per creare la Model Card è necessario specificare il nome e la versione del modello all'interno del file **name_version.yml**, che si trova nella directory **src/Data**."
+          COMMENT="Per creare la Model Card è necessario specificare il nome e la versione del modello all'interno del file name_version.yml, che si trova nella directory src/Data."
           PR_NUMBER=${{ github.event.pull_request.number }}
           PR_NUMBER=${{ github.event.pull_request.number }}
           curl -X POST \
@@ -45,12 +44,14 @@ jobs:
             -d "{\"body\":\"$COMMENT\"}"
 
       - name: Create md files file
+        if: steps.check_comment.outputs.comment_exists == 'true'      
         run: |
           mkdir -p src/Data
           > src/Data/name_version.md
           > src/Data/_parts.md
 
       - name: Commit and push files
+        if: steps.check_comment.outputs.comment_exists == 'true'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"

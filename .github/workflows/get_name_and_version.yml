@@ -14,29 +14,36 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Check if name_version.md exists and is not empty
+        id: check
         run: |
+          CONTROL=true
           if [ -f src/Data/name_version.md ]; then
             CONTENT=$(cat src/Data/name_version.md)
             if [ -z "$CONTENT" ]; then
               echo "File src/Data/name_version.md is empty!"
-              exit 1
+              CONTROL=false
             fi
           else
             echo "File src/Data/name_version.md not found!"
-            exit 1
+            CONTROL=false
           fi
 
+          echo "::set-output name=file_exists::$CONTROL"
+
       - name: Set up Python
+        if: steps.check.outputs.file_exists == 'true'
         uses: actions/setup-python@v2
         with:
           python-version: '3.12.7'
 
       - name: Install dependencies
+        if: steps.check.outputs.file_exists == 'true'
         run: |
           pip install mlflow
           pip install jinja2
 
       - name: Read name_version.md and pass to main.py
+        if: steps.check.outputs.file_exists == 'true'
         run: |     
           CONTENT=$(cat src/Data/name_version.md)
           echo "File content: $CONTENT"
@@ -44,6 +51,7 @@ jobs:
           python src/main.py "$(printf '%s' "$CONTENT")" 
 
       - name: Commit and push Model Card
+        if: steps.check.outputs.file_exists == 'true'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
