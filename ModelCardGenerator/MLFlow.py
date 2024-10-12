@@ -63,7 +63,7 @@ def ModelCard(modelName, version):
         print(e)
         return
 
-    environment = Environment(loader = FileSystemLoader("src/Utils/Templates"))
+    environment = Environment(loader = FileSystemLoader("ModelCardGenerator/Utils/Templates"))
     modelcard_template = environment.get_template("modelCard_template.md")
     instance = modelcard_template.render(data)
 
