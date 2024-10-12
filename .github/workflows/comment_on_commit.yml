@@ -1,0 +1,21 @@
+name: Comment on commit
+
+on:
+    pull_request:
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: post comment
+        if: contains(${{ github.event.head_commit.message }}, 'Model Card generated')
+        run: |
+          COMMENT="Integra la Model Card inserendo le informazioni nel file _parts.md, che si trova nella directory ModelCardGenerator/Data. "
+          PR_NUMBER=${{ github.event.pull_request.number }}
+          PR_NUMBER=${{ github.event.pull_request.number }}
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments \
+            -d "{\"body\":\"$COMMENT\"}"

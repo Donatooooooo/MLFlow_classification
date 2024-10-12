@@ -17,7 +17,7 @@ jobs:
       - name: Check comment
         id: check_comment
         run: |
-          COMMENT="Per creare la Model Card è necessario specificare il nome e la versione del modello all'interno del file name_version.yml, che si trova nella directory ModelCardGenerator/Data."
+          COMMENT="Per creare la Model Card è necessario specificare il nome e la versione del modello all'interno del file name_version.md, che si trova nella directory ModelCardGenerator/Data."
           PR_NUMBER=${{ github.event.pull_request.number }}
 
           COMMENTS_URL="https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments"
@@ -34,7 +34,7 @@ jobs:
       - name: Generate comment
         if: steps.check_comment.outputs.comment_exists == 'true'
         run: |
-          COMMENT="Per creare la Model Card è necessario specificare il nome e la versione del modello all'interno del file name_version.yml, che si trova nella directory ModelCardGenerator/Data."
+          COMMENT="Per creare la Model Card è necessario specificare il nome e la versione del modello all'interno del file name_version.md, che si trova nella directory ModelCardGenerator/Data."
           PR_NUMBER=${{ github.event.pull_request.number }}
           PR_NUMBER=${{ github.event.pull_request.number }}
           curl -X POST \
