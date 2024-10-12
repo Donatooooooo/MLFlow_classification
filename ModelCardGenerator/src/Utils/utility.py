@@ -21,6 +21,6 @@ def extratDatasetName(data):
 def getPath(data):
     part = data.get("modelName").replace(" ", "")
     fname = f"{part}_v{data.get('version')}.md"
-    root = os.path.abspath(os.path.join(os.path.join(os.path.dirname(__file__), '..'), '..'))
+    root = os.path.abspath(os.path.join(os.path.join(os.path.join(os.path.dirname(__file__), '..'), '..'), '..'))
     ModelCards_directory = os.path.join(root, 'ModelCards') 
     return os.path.join(ModelCards_directory, fname)
