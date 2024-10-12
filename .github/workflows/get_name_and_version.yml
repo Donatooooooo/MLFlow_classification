@@ -65,10 +65,10 @@ jobs:
             CONTROL=false
           fi
           
-          echo "::set-output name=file_exists::$CONTROL"
+          echo "::set-output name=check::$CONTROL"
 
       - name: Commit and push Model Card
-        if: steps.file_check.outputs.file_exists == false
+        if: steps.file_check.outputs.check == false
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
