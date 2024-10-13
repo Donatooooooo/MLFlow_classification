@@ -80,7 +80,7 @@ jobs:
             git pull --rebase origin ${{ github.head_ref }}
             git push origin HEAD:${{ github.head_ref }}
 
-            COMMENT="Per completare la Model Card puoi specificare le informazioni aggiuntive all'inetrno del file _parts.md che si trova nella directory ModelCardsGenerator/Data."
+            COMMENT="Per completare la Model Card puoi specificare le informazioni aggiuntive all'interno del file _parts.md che si trova nella directory ModelCardsGenerator/Data."
             PR_NUMBER=${{ github.event.pull_request.number }}
             PR_NUMBER=${{ github.event.pull_request.number }}
             curl -X POST \
