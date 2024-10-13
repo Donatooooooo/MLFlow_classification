@@ -32,7 +32,6 @@ jobs:
             CONTROL=false
           fi
 
-          echo "controllo se name_version esiste e non è vuoto: $CONTROL"
           echo "::set-output name=file_exists::$CONTROL"
 
       - name: Set up Python
