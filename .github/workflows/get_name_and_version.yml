@@ -3,10 +3,14 @@ name: Process name_version.md
 on:
   pull_request:
     paths:
-      - 'src/Data/name_version.md'
+      - 'ModelCardsGenerator/Data/name_version.md'
+
+permissions:
+  pull-requests: write
+  contents: write
 
 jobs:
-  process_file:
+  modelcard_generator:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,17 +21,18 @@ jobs:
         id: check
         run: |
           CONTROL=true
-          if [ -f src/Data/name_version.md ]; then
-            CONTENT=$(cat src/Data/name_version.md)
+          if [ -f ModelCardsGenerator/Data/name_version.md ]; then
+            CONTENT=$(cat ModelCardsGenerator/Data/name_version.md)
             if [ -z "$CONTENT" ]; then
-              echo "File src/Data/name_version.md is empty!"
+              echo "File ModelCardsGenerator/Data/name_version.md is empty!"
               CONTROL=false
             fi
           else
-            echo "File src/Data/name_version.md not found!"
+            echo "File ModelCardsGenerator/Data/name_version.md not found!"
             CONTROL=false
           fi
 
+          echo "controllo se name_version esiste e non è vuoto: $CONTROL"
           echo "::set-output name=file_exists::$CONTROL"
 
       - name: Set up Python
@@ -42,38 +47,50 @@ jobs:
           pip install mlflow
           pip install jinja2
 
-      - name: Read name_version.md and pass to main.py
+      - name: create Model Card using generator.py
         if: steps.check.outputs.file_exists == 'true'
         run: |     
-          CONTENT=$(cat src/Data/name_version.md)
-          echo "File content: $CONTENT"
-          echo "passing content to main.py"
-          python src/main.py "$(printf '%s' "$CONTENT")"
+          CONTENT=$(cat ModelCardsGenerator/Data/name_version.md)
+          echo "passing content to generator.py"
+          OUTPUT=$(python ModelCardsGenerator/src/generator.py "$(printf '%s' "$CONTENT")")
 
-      - name: Check if file already exists
-        if: steps.check.outputs.file_exists == 'true'
-        id: file_check
-        run: |
-          CONTENT=$(cat src/Data/name_version.md)
-          FILE_NAME=$(python src/main.py "$(printf '%s' "$CONTENT")")
-          if [ -f "ModelCards/$FILE_NAME" ]; then
-            echo "File already exists, skipping push."
-            rm -f "ModelCards/$FILE_NAME"
-            CONTROL=true
-          else
-            echo "File does not exist, proceeding push."
-            CONTROL=false
-          
-          echo "::set-output name=file_exists::$CONTROL"
+          if [ -n "$OUTPUT" ]; then
+            echo "EXCEPTION in generator.py: $OUTPUT"
+
+            COMMENT="Check name_version.md: $OUTPUT"
+            PR_NUMBER=${{ github.event.pull_request.number }}
+            PR_NUMBER=${{ github.event.pull_request.number }}
+            curl -X POST \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments \
+              -d "{\"body\":\"$COMMENT\"}"
+          fi
 
       - name: Commit and push Model Card
-        if: steps.file_check.outputs.file_exists == false
+        if: steps.check.outputs.file_exists == 'true'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add .
-          git commit -m "Model Card generated"
-          git pull --rebase origin ${{ github.head_ref }}
-          git push origin HEAD:${{ github.head_ref }}
+          
+          if [[ $(git status --porcelain ModelCards/) ]]; then
+            echo "Changes detected in ModelCards, proceeding with commit and push."
+            git add .
+            git commit -m "Model Card generated"
+            git pull --rebase origin ${{ github.head_ref }}
+            git push origin HEAD:${{ github.head_ref }}
+
+            COMMENT="Per completare la Model Card puoi specificare le informazioni aggiuntive all'inetrno del file _parts.md che si trova nella directory ModelCardsGenerator/Data."
+            PR_NUMBER=${{ github.event.pull_request.number }}
+            PR_NUMBER=${{ github.event.pull_request.number }}
+            curl -X POST \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments \
+              -d "{\"body\":\"$COMMENT\"}"
+
+          else
+            echo "No changes in ModelCards, skipping commit and push."
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
