@@ -34,10 +34,10 @@ jobs:
           pip install mlflow
           pip install jinja2
 
-      - name: create Model Card using generator.py
+      - name: integrate Model Card using integrator.py
         run: |
           FILE=${{ steps.find_last_updated_file.outputs.last_file }}
-          OUTPUT=$(python ModelCardsGenerator/src/integrator.py "$FILE")
+          OUTPUT=$(python ModelCardsGenerator/src/integrator.py $FILE)
 
           if [ -n "$OUTPUT" ]; then
             echo "EXCEPTION in integratior.py: $OUTPUT"
