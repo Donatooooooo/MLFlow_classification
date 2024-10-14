@@ -37,10 +37,10 @@ jobs:
       - name: create Model Card using generator.py
         run: |
           FILE=${{ steps.find_last_updated_file.outputs.last_file }}
-          OUTPUT=$(python ModelCardsGenerator/src/integrator.py)
+          OUTPUT=$(python ModelCardsGenerator/src/integrator.py "$FILE")
 
           if [ -n "$OUTPUT" ]; then
-            echo "EXCEPTION in generator.py: $OUTPUT"
+            echo "EXCEPTION in integratior.py: $OUTPUT"
 
             COMMENT="Check _parts.md: $OUTPUT"
             PR_NUMBER=${{ github.event.pull_request.number }}
