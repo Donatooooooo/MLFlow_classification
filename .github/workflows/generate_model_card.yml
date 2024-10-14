@@ -54,7 +54,7 @@ jobs:
           OUTPUT=$(python ModelCardsGenerator/src/ModelCardGenerator.py "$(printf '%s' "$CONTENT")")
 
           if [ -n "$OUTPUT" ]; then
-            echo "EXCEPTION in ModelCardGenerator.py: $OUTPUT"
+            echo "Exception in ModelCardGenerator.py: $OUTPUT"
 
             COMMENT="Check name_version.md: $OUTPUT"
             PR_NUMBER=${{ github.event.pull_request.number }}
