@@ -4,6 +4,10 @@ on:
   pull_request:
     paths:
       - 'ModelCardsGenerator/Data/_parts.md'
+  workflow_run:
+    workflows: ["Model Card Generator"]
+    types:
+      - completed
 
 permissions:
   pull-requests: write
