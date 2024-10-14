@@ -1,8 +1,7 @@
 from mlflow.tracking import MlflowClient
-from jinja2 import Environment, FileSystemLoader
 from Utils.utility import convertTime, extractInfoTags
-from Utils.utility import extratDatasetName, getPath
-import os
+from Utils.utility import extratDatasetName, getPath, templateRender
+import os, sys
 
 def fetchData(modelName, version):
     """
@@ -51,6 +50,7 @@ def fetchData(modelName, version):
 
     return data
 
+
 def ModelCard(modelName, version):
     """
     Crea una Model Card del modello instanziando un template 
@@ -63,14 +63,19 @@ def ModelCard(modelName, version):
         print(e)
         return
 
-    environment = Environment(loader = FileSystemLoader("ModelCardsGenerator/src/Utils/Templates"))
-    modelcard_template = environment.get_template("modelCard_template.md")
-    instance = modelcard_template.render(data)
+    instance = templateRender("modelCard_template.md", data)
 
     path = getPath(data)
     os.makedirs(os.path.dirname(path), exist_ok=True)
-
-    with open(path, 'w') as file:
-        file.write(instance)
+    with open(path, 'w') as modelCard:
+        modelCard.write(instance)
 
     return None
+
+if __name__ == "__main__":
+    try:
+        input = sys.argv[1]
+        parts = input.rsplit(' ', 1)
+        ModelCard(parts[0], int(parts[1]))
+    except Exception as e:
+        print(e)
