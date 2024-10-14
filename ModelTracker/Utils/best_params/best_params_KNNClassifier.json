@@ -1,1 +1,1 @@
-{"algorithm": "auto", "metric": "euclidean", "n_neighbors": 5, "weights": "uniform"}
+{"algorithm": "auto", "metric": "euclidean", "n_neighbors": 3, "weights": "uniform"}

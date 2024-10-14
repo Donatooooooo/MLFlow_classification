@@ -50,6 +50,6 @@ def trainAndLog(dataset : Dataset, trainer, experimentName, datasetName, modelNa
         # crea e registra un file di previsioni come artifact
         y_test = trainer.getY()
         inferModel(dataset, modelInfo, X_test, y_test)
-        mlflow.log_artifact('Evaluation/predictions.csv', "Predictions_Test")
+        mlflow.log_artifact('ModelTracker/Utils/predictions.csv', "Predictions_Test")
     mlflow.end_run()
     return None
