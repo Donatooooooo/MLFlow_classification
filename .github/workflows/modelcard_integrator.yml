@@ -1,0 +1,70 @@
+name: Model Card Integrator
+
+on:
+  pull_request:
+    paths:
+      - 'ModelCardsGenerator/Data/_parts.md'
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  modelcard_generator:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Find last updated file in ModelCards
+        id: find_last_updated_file
+        run: |
+            LAST_UPDATED_FILE=$(find ModelCards -type f -exec stat -c '%Y %n' {} \; | sort -n | tail -n 1 | cut -d' ' -f2-)
+            echo "Last updated file: $LAST_UPDATED_FILE"
+            echo "::set-output name=file::$LAST_UPDATED_FILE"
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12.7'
+
+      - name: Install dependencies
+        run: |
+          pip install mlflow
+          pip install jinja2
+
+      - name: create Model Card using generator.py
+        run: |
+          FILE=${{ steps.find_last_updated_file.outputs.last_file }}
+          OUTPUT=$(python ModelCardsGenerator/src/integrator.py)
+
+          if [ -n "$OUTPUT" ]; then
+            echo "EXCEPTION in generator.py: $OUTPUT"
+
+            COMMENT="Check _parts.md: $OUTPUT"
+            PR_NUMBER=${{ github.event.pull_request.number }}
+            PR_NUMBER=${{ github.event.pull_request.number }}
+            curl -X POST \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments \
+              -d "{\"body\":\"$COMMENT\"}"
+          fi
+
+      - name: Commit and push Model Card
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          if [[ $(git status --porcelain ModelCards/) ]]; then
+            echo "Changes detected in ModelCards, proceeding with commit and push."
+            git add .
+            git commit -m "Model Card integrated"
+            git pull --rebase origin ${{ github.head_ref }}
+            git push origin HEAD:${{ github.head_ref }}
+          else
+            echo "No changes in ModelCards, skipping commit and push."
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
