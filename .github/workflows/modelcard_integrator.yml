@@ -1,9 +1,6 @@
 name: Model Card Integrator
 
 on:
-  pull_request:
-    paths:
-      - 'ModelCardsGenerator/Data/_parts.md'
   workflow_run:
     workflows: ["Model Card Generator"]
     types:
@@ -14,7 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  modelcard_generator:
+  modelcard_integrator:
     runs-on: ubuntu-latest
 
     steps:
