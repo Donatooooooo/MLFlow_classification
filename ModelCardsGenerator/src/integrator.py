@@ -61,12 +61,14 @@ def isModelCardAssembled(path):
     
 if __name__ == "__main__":
     try:
+        print("\nININ\n")
         path = sys.argv[1]
 
         isModelCardAssembled(path)
 
         with open('ModelCardsGenerator/src/Utils/textfiller.md', 'r') as file:
             text = file.read()
+            print("\nINFILE\n")
 
         data = textProcessing(text)
         assembled = assembleDocs(data)
