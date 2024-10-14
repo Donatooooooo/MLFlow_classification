@@ -43,27 +43,28 @@ jobs:
             https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments \
             -d "{\"body\":\"$COMMENT\"}"
 
-      - name: Check if name_version.md and _parts.md exist
-        if: steps.check_comment.outputs.comment_exists == 'false'
-        id: check_files
-        run: |
-          if [ -f "ModelCardsGenerator/Data/name_version.md" ] && [ -f "ModelCardsGenerator/Data/_parts.md" ]; then
-            CONTROL=true
-          else
-            CONTROL=false
-          fi
+      # - name: Check if name_version.md and _parts.md exist
+      #   if: steps.check_comment.outputs.comment_exists == 'false'
+      #   id: check_files
+      #   run: |
+      #     if [ -f "ModelCardsGenerator/Data/name_version.md" ] && [ -f "ModelCardsGenerator/Data/_parts.md" ]; then
+      #       CONTROL=true
+      #     else
+      #       CONTROL=false
+      #     fi
 
-          echo "::set-output name=file_exists::$CONTROL"
+      #     echo "::set-output name=file_exists::$CONTROL"
 
       - name: Create md files
-        if: steps.check_files.outputs.file_exists == 'false'
+        if: steps.check_comment.outputs.comment_exists == 'false'
         run: |
           mkdir -p ModelCardsGenerator/Data
           > ModelCardsGenerator/Data/name_version.md
           > ModelCardsGenerator/Data/_parts.md
+          echo -e "Description:\n\nHow to use:\n\nIntended usage:\n\nLimitations:\n\n" >> ModelCardsGenerator/Data/_parts.md
 
       - name: Commit and push files
-        if: steps.check_files.outputs.file_exists == 'false'
+        if: steps.check_comment.outputs.comment_exists == 'false'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
