@@ -1,4 +1,4 @@
-name: Process name_version.md
+name: Generate Model Card
 
 on:
   pull_request:
@@ -46,15 +46,15 @@ jobs:
           pip install mlflow
           pip install jinja2
 
-      - name: create Model Card using generator.py
+      - name: create Model Card using ModelCardGenerator.py
         if: steps.check.outputs.file_exists == 'true'
         run: |     
           CONTENT=$(cat ModelCardsGenerator/Data/name_version.md)
-          echo "passing content to generator.py"
-          OUTPUT=$(python ModelCardsGenerator/src/generator.py "$(printf '%s' "$CONTENT")")
+          echo "passing content to ModelCardGenerator.py"
+          OUTPUT=$(python ModelCardsGenerator/src/ModelCardGenerator.py "$(printf '%s' "$CONTENT")")
 
           if [ -n "$OUTPUT" ]; then
-            echo "EXCEPTION in generator.py: $OUTPUT"
+            echo "EXCEPTION in ModelCardGenerator.py: $OUTPUT"
 
             COMMENT="Check name_version.md: $OUTPUT"
             PR_NUMBER=${{ github.event.pull_request.number }}
