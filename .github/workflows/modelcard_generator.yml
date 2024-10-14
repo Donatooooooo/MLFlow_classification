@@ -1,4 +1,4 @@
-name: Process name_version.md
+name: Model Card Generator
 
 on:
   pull_request:
@@ -49,9 +49,7 @@ jobs:
       - name: create Model Card using generator.py
         if: steps.check.outputs.file_exists == 'true'
         run: |     
-          CONTENT=$(cat ModelCardsGenerator/Data/name_version.md)
-          echo "passing content to generator.py"
-          OUTPUT=$(python ModelCardsGenerator/src/generator.py "$(printf '%s' "$CONTENT")")
+          OUTPUT=$(python ModelCardsGenerator/src/generator.py)
 
           if [ -n "$OUTPUT" ]; then
             echo "EXCEPTION in generator.py: $OUTPUT"

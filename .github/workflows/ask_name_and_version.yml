@@ -61,6 +61,7 @@ jobs:
           mkdir -p ModelCardsGenerator/Data
           > ModelCardsGenerator/Data/name_version.md
           > ModelCardsGenerator/Data/_parts.md
+          echo -e "Description:\n\nHow to use:\n\nIntended usage:\n\nLimitations:" >> ModelCardsGenerator/Data/_parts.md
 
       - name: Commit and push files
         if: steps.check_files.outputs.file_exists == 'false'
