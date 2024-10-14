@@ -17,6 +17,8 @@ jobs:
       - name: Check if comment already exists
         id: check_comment
         run: |
+          git fetch ${{ github.head_ref }}
+          git pull origin ${{ github.head_ref }}
           COMMENT="Per creare la Model Card è necessario specificare il nome e la versione del modello all'interno del file name_version.md, che si trova nella directory ModelCardsGenerator/Data."
           PR_NUMBER=${{ github.event.pull_request.number }}
 
