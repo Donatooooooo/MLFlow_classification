@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/820066200759779042/d75fef7b569f4a9ca1193a661487a82d/artifacts
+end_time: 1728925175511
+entry_point_name: ''
+experiment_id: '820066200759779042'
+lifecycle_stage: active
+run_id: d75fef7b569f4a9ca1193a661487a82d
+run_name: tasteful-bird-517
+run_uuid: d75fef7b569f4a9ca1193a661487a82d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728924827411
+status: 3
+tags: []
+user_id: donat

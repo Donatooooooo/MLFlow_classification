@@ -32,4 +32,4 @@ def inferModel(dataset : Dataset, modelInfo, X_test, y_test):
     
     result["actual_class"] = y_test
     result["predicted_class"] = predictions
-    result.sample(100).to_csv('Evaluation/predictions.csv', index=False)
+    result.sample(100).to_csv('ModelTracker/Utils/predictions.csv', index=False)

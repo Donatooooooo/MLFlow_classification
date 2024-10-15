@@ -6,7 +6,7 @@ from Utils.utility import preprocessing
 import copy
 
 
-dataset = Dataset("Dataset/brest_cancer.csv")
+dataset = Dataset("ModelTracker/Dataset/brest_cancer.csv")
 dataset = preprocessing(dataset)
 
 experiment = "MultiClassifiers"
@@ -18,7 +18,7 @@ trainAndLog(
     trainer = RFtrainer,
     experimentName = experiment,
     datasetName = "brest_cancer.csv",
-    modelName = "Random Forest Classifier",
+    modelName = "Random Forest",
     tags = {"Training Info": "testing with kMeans"}
 )
 
@@ -29,6 +29,6 @@ trainAndLog(
     trainer = KNNtrainer,
     experimentName = experiment,
     datasetName = "brest_cancer.csv",
-    modelName = "KNN Classifier",
+    modelName = "KNN",
     tags = {"Training Info": "testing with kMeans"}
 )

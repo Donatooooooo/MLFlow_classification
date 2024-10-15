@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/820066200759779042/bc3cfef312f743dfa7bdaf6070cb4d9e/artifacts
+end_time: 1728925672864
+entry_point_name: ''
+experiment_id: '820066200759779042'
+lifecycle_stage: active
+run_id: bc3cfef312f743dfa7bdaf6070cb4d9e
+run_name: loud-elk-44
+run_uuid: bc3cfef312f743dfa7bdaf6070cb4d9e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728925663883
+status: 3
+tags: []
+user_id: donat

@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/820066200759779042/c7951d70874b4b6e8c6cd5fbea38b250/artifacts
+end_time: 1728925412158
+entry_point_name: ''
+experiment_id: '820066200759779042'
+lifecycle_stage: active
+run_id: c7951d70874b4b6e8c6cd5fbea38b250
+run_name: worried-deer-414
+run_uuid: c7951d70874b4b6e8c6cd5fbea38b250
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728925402547
+status: 3
+tags: []
+user_id: donat

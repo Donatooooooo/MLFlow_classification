@@ -1,2 +1,2 @@
-## Intended_usage_template.md
+## Intended usage
 {{ text }}

@@ -5,10 +5,10 @@ import mlflow, mlflow.experiments
 
 def trainAndLog(dataset : Dataset, trainer, experimentName, datasetName, modelName, tags : dict = None):
     """
-    Gestisce l'addestramento del modello all'interno di un run di MLFlow registrando informazioni,
-    parametri di addestramento e metriche di valutazione.
+    Manages the training of the model within an MLFlow run by 
+    logging information, training parameters, and evaluation metrics.
     """
-    
+
     mlflow.set_tracking_uri(uri="http://127.0.0.1:5000")
     
     if not mlflow.get_experiment_by_name(experimentName):
@@ -17,26 +17,26 @@ def trainAndLog(dataset : Dataset, trainer, experimentName, datasetName, modelNa
     mlflow.set_experiment(experimentName)
     
     with mlflow.start_run():
-        # log dei tag
+        # tags log
         if tags is not None:
             for title, tag in tags.items():
                 mlflow.set_tag(title, tag)
 
-        # log del dataset usato per l'addestramento
+        # dataset logs
         rawdata = mlflow.data.from_pandas(dataset.getDataset(), name = datasetName)
         mlflow.log_input(rawdata, context="training")
         
-        # ricerca e log degli iperparametri
+        # Search for and log hyperparameters
         trainer.findBestParams()
         mlflow.log_params(trainer.getParams())
 
-        # fase di addestramento
+        # model training
         trainer.run()
 
-        # log delle metriche
+        # metrics log
         mlflow.log_metrics(trainer.getMetrics())
 
-        # registra il modello addestrato e le informazioni
+        # Register the trained model and its information
         X_test = trainer.getX()
         model = trainer.getModel()
         modelInfo = mlflow.sklearn.log_model(
@@ -47,9 +47,9 @@ def trainAndLog(dataset : Dataset, trainer, experimentName, datasetName, modelNa
             registered_model_name = modelName,
         )
 
-        # crea e registra un file di previsioni come artifact
+        # Create and log a predictions file as an artifact
         y_test = trainer.getY()
         inferModel(dataset, modelInfo, X_test, y_test)
-        mlflow.log_artifact('Evaluation/predictions.csv', "Predictions_Test")
+        mlflow.log_artifact('ModelTracker/Utils/predictions.csv', "Predictions_Test")
     mlflow.end_run()
     return None
