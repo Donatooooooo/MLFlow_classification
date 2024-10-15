@@ -32,3 +32,14 @@ def templateRender(template, data, path = ""):
                               (f"ModelCardsGenerator/src/Utils/Templates{path}"))
     template = environment.get_template(template)
     return template.render(data)
+
+def isUsable(text):
+    lines = text.splitlines()
+    titles = ["Description:", "How to use:", "Intended usage:", "Limitations:"]
+
+    for index, line in enumerate(lines):
+        if index > 0:
+            for title in titles:
+                if line == title and lines[index - 1].strip() != "+++++":
+                    return False
+    return True
