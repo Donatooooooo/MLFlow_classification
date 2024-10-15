@@ -17,7 +17,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Check if name_version.md exists and is not empty
+      - name: Check if add_info.md is written
         id: check
         run: |
           CONTROL=true
@@ -54,9 +54,9 @@ jobs:
           OUTPUT=$(python ModelCardsGenerator/src/ModelCardGenerator.py "$(printf '%s' "$CONTENT")")
 
           if [ -n "$OUTPUT" ]; then
-            echo "Exception in ModelCardGenerator.py: $OUTPUT"
+            echo "ModelCardGenerator.py output: $OUTPUT"
 
-            COMMENT="Check name_version.md: $OUTPUT"
+            COMMENT="$OUTPUT"
             PR_NUMBER=${{ github.event.pull_request.number }}
             PR_NUMBER=${{ github.event.pull_request.number }}
             curl -X POST \
@@ -79,7 +79,7 @@ jobs:
             git pull --rebase origin ${{ github.head_ref }}
             git push origin HEAD:${{ github.head_ref }}
 
-            COMMENT="Per completare la Model Card puoi specificare le informazioni aggiuntive all'interno del file _parts.md che si trova nella directory ModelCardsGenerator/Data."
+            COMMENT="Per completare la Model Card puoi specificare le informazioni aggiuntive all'interno del file add_info.md che si trova nella directory ModelCardsGenerator/Data."
             PR_NUMBER=${{ github.event.pull_request.number }}
             PR_NUMBER=${{ github.event.pull_request.number }}
             curl -X POST \
@@ -91,5 +91,24 @@ jobs:
           else
             echo "No changes in ModelCards, skipping commit and push."
           fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create name_version.md file
+        if: steps.check.outputs.file_exists == 'true'
+        run: |
+          > ModelCardsGenerator/Data/add_info.md
+          echo -e "+++++\nDescription:\n\n\n+++++\nHow to use:\n\n" >> ModelCardsGenerator/Data/add_info.md
+          echo -e "+++++\nIntended usage:\n\n\n+++++\nLimitations:\n\n" >> ModelCardsGenerator/Data/add_info.md
+
+      - name: Commit and push files
+        if: steps.check.outputs.file_exists == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "created add_info.md file"
+          git pull --rebase origin ${{ github.head_ref }}
+          git push origin HEAD:${{ github.head_ref }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

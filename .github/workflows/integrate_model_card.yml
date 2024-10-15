@@ -1,0 +1,99 @@
+name: Integrate Model Card
+
+on:
+  pull_request:
+    paths:
+      - 'ModelCardsGenerator/Data/add_info.md'
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  modelcard_integrator:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check if the file content matches
+        id: check
+        run: |
+          expected_content="+++++
+                +++++
+                Description:
+
+
+                +++++
+                How to use:
+
+
+                +++++
+                Intended usage:
+
+
+                +++++
+                Limitations:
+
+
+            "
+          actual_content=$(cat ModelCardsGenerator/Data/add_info.md)
+          if [[ "$actual_content" == "$expected_content" ]]; then
+            CONTROL=false
+          else
+            CONTROL=true
+          fi
+
+          echo "::set-output name=file_exists::$CONTROL"
+
+      - name: Set up Python
+        if: steps.check.outputs.file_exists == 'true'
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12.7'
+
+      - name: Install dependencies
+        if: steps.check.outputs.file_exists == 'true'
+        run: |
+          pip install mlflow
+          pip install jinja2
+
+      - name: create Model Card using ModelCardIntegrator.py
+        if: steps.check.outputs.file_exists == 'true'
+        run: |
+          latest_file=$(find ModelCards -type f -printf "%T@ %p\n" | sort -n | tail -1 | cut -d' ' -f2-)
+          echo "Latest modified file: $latest_file"
+
+          echo "passing content to ModelCardIntegrator.py"
+          OUTPUT=$(python ModelCardsGenerator/src/ModelCardIntegrator.py "$(printf '%s' "$latest_file")")
+
+          if [ -n "$OUTPUT" ]; then
+            echo "ModelCardIntegrator.py output: $OUTPUT"
+            COMMENT="$OUTPUT"
+            PR_NUMBER=${{ github.event.pull_request.number }}
+            PR_NUMBER=${{ github.event.pull_request.number }}
+            curl -X POST \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments \
+              -d "{\"body\":\"$COMMENT\"}"
+          fi
+
+      - name: Commit and push Model Card
+        if: steps.check.outputs.file_exists == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          if [[ $(git status --porcelain ModelCards/) ]]; then
+            echo "Changes detected in ModelCards, proceeding with commit and push."
+            git add .
+            git commit -m "Model Card integrated"
+            git pull --rebase origin ${{ github.head_ref }}
+            git push origin HEAD:${{ github.head_ref }}
+          else
+            echo "No changes in ModelCards, skipping commit and push."
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

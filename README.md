@@ -7,24 +7,36 @@
 
 # Struttura del repository
 ```
-|   main.py                                        <- Script principale che avvia i task di classificazione e la creazione delle Model Cards.
-|   MLFlow.py                                      <- Gestisce l'integrazione con MLflow.
-|   README.md                                      <- File descrittivo dei test eseguiti.
-+---Classifiers                                    <- Directory contenetente i classificatori usati per testare il tracciamento di MLFlow.
-+---Dataset
-|       brest_cancer.csv                           <- Dataset usato per l'addestramento dei modelli.
-|       dataset.py                                 <- Gestisce un dataset csv.
-+---Evaluation
-|   |   best_params_KNNClassifier.json             <- Migliori parametri trovati per il classificatore KNN.
-|   |   best_params_RandomForestClassifier.json    <- Migliori parametri trovati per il classificatore Random Forest.
-|   |   predictions.csv                            <- File di predizioni usato come test nel caricamento di artifacts.
-|   +---img                                        <- Directory contenente le immagini usate nel file README.md.
-+---mlartifacts                                    <- Directory usata da MLFlow per lo storage degli artifacts.
-+---mlruns                                         <- Directory usata da MLFlow per lo storage degli esperimenti e run relativi.
-+---ModelCards                                     <- Directory contenente le Model Cards create in fase di test.
-+---Utils
-        kmeans.py                                  <- Contiene i metodi per effettuare il clustering di dati.
-        utility.py                                 <- Contiene delle funzioni di supporto.
+|   README.md                                            <- File descrittivo della repository.
+|   
++---.github/workflows                                    <- Directory che contiene le Github Actions.
++---mlartifacts                                          <- Directory usata da MLFlow per lo storage degli artifacts.
++---mlruns                                               <- Directory usata da MLFlow per lo storage degli esperimenti e run relativi.
++---ModelCardsGenerator
+|   +---Data                                             <- Directory di supporto al workflow di creazione della Model Card.
+|   +---src
+|       |   ModelCardGenerator.py                        <- Script che crea la Model Card.
+|       |   ModelCardIntegrator.py                       <- Script che integra le informazioni della Model Card.
+|       +---Utils
+|           |   exceptions.py                            <- Eccezioni personalizzate.
+|           |   logger.py                                <- Gestisce l'output del programnma di creazione della Model Card.
+|           |   utility.py                               <- Contiene delle funzioni di supporto per la creazione della Model Card.
+|           +---Templates
+|               |   modelCard_template.md                <- Template usato per la creazione della Model Card.
+|               +---_parts                               <- Directory contenente i template usati per l'integrazione della Model Card.
++---ModelTracker
+    |   main.py                                          <- Script che avvia i task di classificazione.
+    |   MLFlowTracker.py                                 <- Gestisce il tracciamento dei modelli.
+    +---Classifiers                                      <- Directory contenente i modelli usati per la classificazione.
+    +---Dataset
+    |       brest_cancer.csv                             <- Dataset usato per l'addestramento dei modelli.
+    |       dataset.py                                   <- Gestisce un dataset csv.
+    +---Utils
+        |   kmeans.py                                    <- Contiene i metodi per effettuare il clustering di dati.
+        |   predictions.csv                              <- File di predizioni usato come test nel caricamento di artifacts.
+        |   utility.py                                   <- Contiene delle funzioni di supporto per l'addestramento e il tracciamento.
+        +---best_params                                  <- Directory che contiene i migliori iperparametri trovati 
+        +---img                                          <- Directory contenente le immagini usate nel file README.md.
 ```
 # MLFlow
 Negli ultimi anni lo sviluppo e l'utilizzo di modelli di machine learning è diventato sempre più significativo. L'implementazione del software ML richiede varie fasi di sperimentazione fondamentali per garantirne il corretto funzionamento: gli sviluppatori utilizzano costantemente nuovi dataset, librerie e diversi iperparametri. Di fronte alla necessità di gestire i modelli testati e le informazioni affini, sono state introdotte varie piattaforme progettate per semplificare la gestione dell'intero ciclo di vita di strumenti ML.
