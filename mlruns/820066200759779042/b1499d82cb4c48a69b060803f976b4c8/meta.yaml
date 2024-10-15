@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/820066200759779042/b1499d82cb4c48a69b060803f976b4c8/artifacts
+end_time: 1728978835165
+entry_point_name: ''
+experiment_id: '820066200759779042'
+lifecycle_stage: active
+run_id: b1499d82cb4c48a69b060803f976b4c8
+run_name: fun-mare-308
+run_uuid: b1499d82cb4c48a69b060803f976b4c8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728978825786
+status: 3
+tags: []
+user_id: donat
