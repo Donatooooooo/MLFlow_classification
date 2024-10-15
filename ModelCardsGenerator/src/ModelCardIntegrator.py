@@ -1,14 +1,21 @@
+from Utils.exceptions import TextValidationError
 from Utils.utility import templateRender
-import sys
+from Utils.utility import isUsable
+from Utils.logger import Logger
+import sys, os
 
 def textProcessing(text):
     """
-    Processa il testo scritto dall'utente nel file 
+    Processes the text written by the user in the file 
     ModelCardsGenerator/Data/_parts.md
     """
+    
+    if not isUsable(text):
+        raise TextValidationError()
+    
     variables = {}
-    sections = [section for section in text.split('\n\n') if section.strip()]
-
+    sections = [section for section in text.split('+++++') if section.strip()]
+    
     for section in sections:
         name, content = section.split(':', 1)
         name = name.strip().replace(' ', '_').lower()
@@ -26,8 +33,8 @@ def textProcessing(text):
 
 def assembleDocs(data):
     """
-    Assembla le diverse parti da integrare nella Model Card
-    attraverso i templates 
+    Assembles the various components to be integrated into the Model Card 
+    using the templates.
     """
     templates = ["description_template.md", "how_to_use_template.md", 
                  "intended_usage_template.md", "limitations_template.md"]
@@ -42,15 +49,15 @@ def assembleDocs(data):
 
 def isModelCardAssembled(path):
     """
-    Controlla se la Model Card è già stata integrata,
-    in caso positivo elimina la precedente integrazione.
+    Checks if the Model Card has already been integrated; 
+    if so, removes the previous integration.
     """
     with open(path, 'r') as modelCard:
         lines = modelCard.readlines()
         
         index = None
         for i, line in enumerate(lines):
-            if line.startswith("## Description"):
+            if line.startswith(("## Description", "## Limitations", "## How to use", "## Intended usage")):
                 index = i
                 break
 
@@ -60,18 +67,25 @@ def isModelCardAssembled(path):
                 modelCard.write(line)
     
 if __name__ == "__main__":
+    output = Logger()
     try:
         path = sys.argv[1]
+        with open('ModelCardsGenerator/Data/add_info.md', 'r') as file:
+            text = file.read()
+        data = textProcessing(text)
 
         isModelCardAssembled(path)
-
-        with open('ModelCardsGenerator/src/Utils/textfiller.md', 'r') as file:
-            text = file.read()
-
-        data = textProcessing(text)
         assembled = assembleDocs(data)
-
         with open(path, 'a') as modelCard:
             modelCard.write(assembled)
+
+    except IndexError as e:
+        output.log("Check input: invalid arguments")
+    except TextValidationError as e:
+        output.log(f"Check add_info.md: {str(e)}")
+    except FileNotFoundError as e:
+        output.log(f"Check file path, {str(e).split('] ')[1]}")
     except Exception as e:
-        print(e)
+        output.log(f"Exception caused by: {str(e)}")
+    finally:
+        output.display()
