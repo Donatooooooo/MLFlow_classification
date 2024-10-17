@@ -2,7 +2,7 @@ from Utils.exceptions import TextValidationError
 from Utils.utility import templateRender
 from Utils.utility import isUsable
 from Utils.logger import Logger
-import sys, os
+import sys
 
 def textProcessing(text):
     """
@@ -16,11 +16,14 @@ def textProcessing(text):
     variables = {}
     sections = [section for section in text.split('+++++') if section.strip()]
     
-    for section in sections:
-        name, content = section.split(':', 1)
-        name = name.strip().replace(' ', '_').lower()
-        content = content.strip()
-        variables[name] = content
+    try:
+        for section in sections:
+            name, content = section.split(':', 1)
+            name = name.strip().replace(' ', '_').lower()
+            content = content.strip()
+            variables[name] = content
+    except ValueError:
+        raise TextValidationError()
 
     description = {"text": variables.get('description')}
     how_to_use = {"text": variables.get('how_to_use')}
