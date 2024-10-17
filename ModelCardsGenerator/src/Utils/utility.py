@@ -34,7 +34,6 @@ def getPath(data):
 def saveEnv(path):
     subpath = path.split("ModelCards")[1].lstrip("/").lstrip("\\")
     path = os.path.join("ModelCards", subpath)
-    print(path)
     with open (f"{PATH}/_parts/env.bin", 'wb') as env:
         env.write(path.encode())
 
