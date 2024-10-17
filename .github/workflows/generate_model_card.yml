@@ -17,10 +17,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Check if add_info.md is written
+      - name: Check if add_info.md is written and comment for integration exists
         id: check
         run: |
           CONTROL=true
+          COMMENT="Per completare la Model Card puoi specificare le informazioni aggiuntive all'interno del file add_info.md che si trova nella directory ModelCardsGenerator/Data."
+          PR_NUMBER=${{ github.event.pull_request.number }}
+
+          COMMENTS_URL="https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments"
+          EXISTING_COMMENTS=$(curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" $COMMENTS_URL)
+
+          if echo "$EXISTING_COMMENTS" | grep -q "\"body\": \"$COMMENT\""; then
+            echo "Comment already exists"
+            CONTROL=false
+          fi
+
           if [ -f ModelCardsGenerator/Data/name_version.md ]; then
             CONTENT=$(cat ModelCardsGenerator/Data/name_version.md)
             if [ -z "$CONTENT" ]; then

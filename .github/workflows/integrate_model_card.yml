@@ -62,7 +62,8 @@ jobs:
       - name: create Model Card using ModelCardIntegrator.py
         if: steps.check.outputs.file_exists == 'true'
         run: |
-          latest_file=$(find ModelCards -type f -printf "%T@ %p\n" | sort -n | tail -1 | cut -d' ' -f2-)
+          ls -l ModelCards
+          latest_file=$(find ModelCards -type f -printf "%T@ %p\n" | sort -n | head -1 | cut -d' ' -f2-)
           echo "Latest modified file: $latest_file"
 
           echo "passing content to ModelCardIntegrator.py"
