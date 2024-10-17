@@ -1,8 +1,7 @@
 from Utils.exceptions import TextValidationError
+from Utils.utility import isUsable, getEnv
 from Utils.utility import templateRender
-from Utils.utility import isUsable
 from Utils.logger import Logger
-import sys
 
 def textProcessing(text):
     """
@@ -72,7 +71,7 @@ def isModelCardAssembled(path):
 if __name__ == "__main__":
     output = Logger()
     try:
-        path = sys.argv[1]
+        path = getEnv()
         with open('ModelCardsGenerator/Data/add_info.md', 'r') as file:
             text = file.read()
         data = textProcessing(text)
@@ -82,8 +81,6 @@ if __name__ == "__main__":
         with open(path, 'a') as modelCard:
             modelCard.write(assembled)
 
-    except IndexError as e:
-        output.log("Check input: invalid arguments")
     except TextValidationError as e:
         output.log(f"Check add_info.md: {str(e)}")
     except FileNotFoundError as e:
