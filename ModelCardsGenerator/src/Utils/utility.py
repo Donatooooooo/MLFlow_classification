@@ -2,6 +2,8 @@ from jinja2 import Environment, FileSystemLoader
 from datetime import datetime
 import json, os
 
+PATH = "ModelCardsGenerator/src/Utils/Templates"
+
 def convertTime(unixTime):
     return datetime.fromtimestamp(unixTime/1000.0).strftime('%H:%M:%S %Y-%m-%d')
 
@@ -24,12 +26,24 @@ def getPath(data):
     fname = f"{part}_v{data.get('version')}.md"
     root = os.path.abspath(os.path.join(os.path.join(os.path.join(
         os.path.dirname(__file__), '..'), '..'), '..'))
-    ModelCards_directory = os.path.join(root, 'ModelCards') 
-    return os.path.join(ModelCards_directory, fname)
+    ModelCards_directory = os.path.join(root, 'ModelCards')
+    path = os.path.join(ModelCards_directory, fname)
+    saveEnv(path)
+    return path
 
-def templateRender(template, data, path = ""):
-    environment = Environment(loader = FileSystemLoader
-                              (f"ModelCardsGenerator/src/Utils/Templates{path}"))
+def saveEnv(path):
+    subpath = path.split("ModelCards")[1].lstrip("/").lstrip("\\")
+    path = os.path.join("ModelCards", subpath)
+    print(path)
+    with open (f"{PATH}/_parts/env.bin", 'wb') as env:
+        env.write(path.encode())
+
+def getEnv():
+    with open (f"{PATH}/_parts/env.bin", 'rb') as env:
+        return env.read().decode()
+
+def templateRender(template, data, cd = ""):
+    environment = Environment(loader = FileSystemLoader(f"{PATH}{cd}"))
     template = environment.get_template(template)
     return template.render(data)
 

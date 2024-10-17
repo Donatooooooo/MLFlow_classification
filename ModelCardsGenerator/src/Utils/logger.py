@@ -12,12 +12,12 @@ class Logger:
             for msg in self.messages:
                 if msg.startswith(("Check", "Exception")):
                     out = "**Error** "
-                    out += f"- {msg};   "
+                    out += f"- {msg}. "
                     error = True
                     print(out)
 
             if not error:
                 out = "**Warnings** "
                 for i, msg in enumerate(self.messages):
-                    out += f"{i + 1}.{msg};   "
+                    out += f"{i + 1}.{msg}. "
                 print(out)
