@@ -3,6 +3,8 @@ from Utils.utility import isUsable, getEnv
 from Utils.utility import templateRender
 from Utils.logger import Logger
 
+CONTEXT = "ModelCardIntegrator.py"
+
 def textProcessing(text):
     """
     Processes the text written by the user in the file 
@@ -69,7 +71,7 @@ def isModelCardAssembled(path):
                 modelCard.write(line)
     
 if __name__ == "__main__":
-    output = Logger()
+    output = Logger(CONTEXT)
     try:
         path = getEnv()
         with open('ModelCardsGenerator/Data/add_info.md', 'r') as file:
