@@ -4,7 +4,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
 
 +++++
 How to use:
-'''
+```
 KNNtrainer = KNNTrainer('diagnosis', ['diagnosis'], dataset)
 trainAndLog(
     dataset = dataset,
@@ -14,7 +14,7 @@ trainAndLog(
     modelName = "KNN",
     tags = {"Training Info": "testing with kMeans"}
 )
-'''
+```
 
 +++++
 Intended usage:
