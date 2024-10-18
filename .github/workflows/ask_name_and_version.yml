@@ -52,13 +52,17 @@ jobs:
       - name: Commit and push files
         if: steps.check_comment.outputs.comment_exists == 'false'
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add .
-          git commit -m "created name_version.md file"
-          git pull --rebase origin ${{ github.head_ref }}
-          git push origin HEAD:${{ github.head_ref }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          if [[ $(git status --porcelain ModelCardsGenerator/Data/) ]]; then
+              git config --local user.email "action@github.com"
+              git config --local user.name "GitHub Action"
+              git add .
+              git commit -m "created name_version.md file"
+              git pull --rebase origin ${{ github.head_ref }}
+              git push origin HEAD:${{ github.head_ref }}
+            env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          else
+              echo "Nothing to commit, skip push"
+          fi
 
 

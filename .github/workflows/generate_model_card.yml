@@ -78,6 +78,7 @@ jobs:
           fi
 
       - name: Commit and push Model Card
+        id: commit
         if: steps.check.outputs.file_exists == 'true'
         run: |
           git config --local user.email "action@github.com"
@@ -98,23 +99,26 @@ jobs:
               -H "Accept: application/vnd.github.v3+json" \
               https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments \
               -d "{\"body\":\"$COMMENT\"}"
-
+            CONTROL=true
           else
             echo "No changes in ModelCards, skipping commit and push."
+            CONTROL=false
           fi
+          echo "::set-output name=comment::$CONTROL"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create name_version.md file
-        if: steps.check.outputs.file_exists == 'true'
+        if: steps.check.outputs.file_exists == 'true' && steps.commit.outputs.comment == 'true'
         run: |
           > ModelCardsGenerator/Data/add_info.md
           echo -e "+++++\nDescription:\n\n\n+++++\nHow to use:\n\n" >> ModelCardsGenerator/Data/add_info.md
           echo -e "+++++\nIntended usage:\n\n\n+++++\nLimitations:\n\n" >> ModelCardsGenerator/Data/add_info.md
 
       - name: Commit and push files
-        if: steps.check.outputs.file_exists == 'true'
+        if: steps.check.outputs.file_exists == 'true' && steps.commit.outputs.comment == 'true'
         run: |
+          > ModelCardsGenerator/Data/name_version.md
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
