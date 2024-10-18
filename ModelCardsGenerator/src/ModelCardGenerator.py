@@ -5,6 +5,8 @@ from Utils.utility import extratDatasetName, getPath, templateRender
 from Utils.logger import Logger
 import os, sys
 
+CONTEXT = "ModelCardGenerator.py"
+
 def fetchData(modelName, version):
     """
     Trace information about a model using its name and the specific version stored in the 
@@ -24,7 +26,7 @@ def fetchData(modelName, version):
             mlmodel = item.name
             break
 
-    output = Logger()
+    output = Logger(CONTEXT)
     if runID is None or mlmodel is None:
         raise NoModelException()
     
@@ -44,6 +46,8 @@ def fetchData(modelName, version):
         output.log("Missing metrics in Model Card generation")
     if not datasetName:
         output.log("Missing dataset information in Model Card generation")
+    if "" in [author, py, lib, libv, startTime, endTime]:
+        output.log("Missing info in Model Card generation, check the Model Card for any details.")
 
     data = {
         "modelName": mlmodel,
@@ -71,7 +75,7 @@ def ModelCard(modelName, version):
     try:
         data, output = fetchData(modelName, version)
     except NoModelException as e:
-        output = Logger()
+        output = Logger(CONTEXT)
         output.log(f"Check the model name or version: {str(e)}")
         return output
 
@@ -85,7 +89,7 @@ def ModelCard(modelName, version):
     return output
 
 if __name__ == "__main__":
-    output = Logger()
+    output = Logger(CONTEXT)
     try:
         input = sys.argv[1]
         parts = input.rsplit(' ', 1)
